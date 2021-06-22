@@ -11,7 +11,7 @@
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="../images/icons/favicon.ico"/>
 <!--===============================================================================================-->
-
+    <link rel="stylesheet" type="text/css" href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
@@ -30,40 +30,40 @@
 <!--===============================================================================================-->
 </head>
 <body>
-	<br /><br />
+	<br />
 	<div class="limiter">
        
 		<div class="container-login100" style="background-image: url('../images/bg-01.jpg');">
 			<div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41">
-					Account Login
+					Sign up 
 				</span>
 				<form class="login100-form validate-form p-b-33 p-t-5">
 
-					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="User name">
+					<div class="wrap-input100 validate-input" data-validate = "Enter username" id="userError" runat="server">
+						<asp:TextBox class="input100" type="text" name="username" placeholder="User name" id="userName" runat="server"></asp:TextBox>
 						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 					</div>
 
-                     <div class="wrap-input100 validate-input" data-validate="Enter email">
-						<input class="input100" type="text" name="email" placeholder="Email">
+                     <div class="wrap-input100 validate-input" data-validate="Enter email" id="emailError" runat="server">
+						<asp:TextBox class="input100" type="text" name="email" placeholder="Email" id="email" runat="server"></asp:TextBox>
 						<span class="focus-input100" data-placeholder="&#xe818;"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+					<div class="wrap-input100 validate-input" data-validate="Enter password" id="passwordError" runat="server">
+						<asp:TextBox class="input100" type="password" name="pass" placeholder="Password" id="password" runat="server"></asp:TextBox>
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 					</div>
 
-                    <div class="wrap-input100 validate-input" data-validate="Enter confirm password">
-						<input class="input100" type="password" name="pass" placeholder="Confirm password">
+                    <div class="wrap-input100 validate-input" data-validate="Enter confirm password" id="confirmPasswordError" runat="server">
+						<asp:TextBox class="input100" type="password" name="pass" placeholder="Confirm password" id="confirmPassword" runat="server"></asp:TextBox>
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 					</div>
 
 					<div class="container-login100-form-btn m-t-32">
-						<button class="login100-form-btn">
-							Login
-						</button>
+						<asp:Button class="login100-form-btn" Text="Sign up" onClick="submit" runat="server" >
+							
+						</asp:Button>
 					</div>
 
 				</form>
@@ -90,6 +90,36 @@
 	<script src="../vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="../Scripts/main.js"></script>
+
+
+     <script>
+
+      
+        $('#<%= userName.ClientID %>').focus(function(){
+           hideValidate(this);
+        });
+
+         
+        $('#<%= email.ClientID %>').focus(function(){
+           hideValidate(this);
+         });
+
+         
+        $('#<%= password.ClientID %>').focus(function(){
+           hideValidate(this);
+         });
+
+         
+        $('#<%= confirmPassword.ClientID %>').focus(function(){
+           hideValidate(this);
+        });
+          function hideValidate(input) {
+        var thisAlert = $(input).parent();
+
+        $(thisAlert).removeClass('alert-validate');
+        }
+
+    </script>
 
 </body>
 </html>
