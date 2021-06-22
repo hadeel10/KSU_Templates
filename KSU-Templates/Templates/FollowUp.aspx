@@ -1,9 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="HomePage.aspx.cs" Inherits="KSU_Templates.HomePage" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FollowUp.aspx.cs" Inherits="KSU_Templates.Templates.FollowUp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <head>
         <title>Home Page V16</title>
         <meta charset="UTF-8">
@@ -29,7 +28,7 @@
         <link rel="stylesheet" type="text/css" href="../css/main.css">
         <!--===============================================================================================-->
     </head>
-    
+
     <!-- Header -->
     <div class="limiter">
         <div class="container-login100" style="background-image: url('../images/bg-01.jpg');">
@@ -43,16 +42,15 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- header Subheading -->
-                <p class="masthead-subheading font-weight-light mb-0" style="color: #ffffff; font-size: x-large">Effective Date Notice - Trainee Attendance - Follow up Form</p>
+                <p class="masthead-subheading font-weight-light mb-0" style="color: #ffffff; font-size: x-large">Training Plan - Effective Date Notice - Trainee Attendance - Follow Up form</p>
             </div>
         </div>
     </div>
-
-    <!-- KSU Templates Section -->
-    <section class="page-section portfolio" id="portfolio">
+    <!-- Follow up Temaplate Section-->
+    <section class="page-section" id="contact">
         <div class="container">
-            <!-- KSU Templates Section Heading -->
-            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">KSU Templates</h2>
+            <!-- Contact Section Heading-->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Follow up Form</h2>
             <!-- Icon Divider-->
             <div class="divider-custom">
                 <div class="divider-custom-line"></div>
@@ -60,41 +58,51 @@
                 <div class="divider-custom-line"></div>
             </div>
         </div>
-        <!-- KSU Templates -->
-        <div class="row justify-content-center">
-            <!--Effective Date Notice Template -->
-            <div class="col-md-6 col-lg-4 mb-5">
-                <a href="About.aspx">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal">
-                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <img class="img-fluid" src="/images/Component 4.png" alt="..." />
-                    </div>
-                </a>
-            </div>
-            <!-- Trainee Attendence Template -->
-            <div class="col-md-6 col-lg-4 mb-5">
-                <a href="About.aspx">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal">
-                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <img class="img-fluid" src="/images/Component 2.png" alt="..." />
-                    </div>
-                </a>
-            </div>
-            <!-- Follow up Template -->
-            <div class="col-md-6 col-lg-4 mb-5">
-                <a href="/Templates/FollowUp.aspx">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal">
-                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <img class="img-fluid" src="/images/Component 3.png" alt="..." />
-                    </div>
-                </a>
-            </div>
-        </div>
     </section>
+   <%-- <h2 class="page-section-heading text-center text-secondary mb-0">Trainee's information</h2>--%>
+    <br />
+    <br />
+    <br />
+  <%--  <table style="margin-left: auto; margin-right: auto;">
+        <tr>
+            <td>
+                <!-- Name input-->
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                    <label for="name">Name</label>
+                    <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                </div>
+            </td>
+            <td style="padding: 0 100px;"></td>
+            <td>
+                <!-- ID input-->
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="id" type="text" placeholder="Enter your ID..." data-sb-validations="required" />
+                    <label for="name">ID</label>
+                    <div class="invalid-feedback" data-sb-feedback="name:required">An ID is required.</div>
+                </div>
+            </td>
+        </tr>
+          <tr>
+            <td>
+                <!-- Institution input-->
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                    <label for="name">Name</label>
+                    <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                </div>
+            </td>
+            <td style="padding: 0 100px;"></td>
+            <td>
+                <!-- Startin Date input-->
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="id" type="text" placeholder="Enter your ID..." data-sb-validations="required" />
+                    <label for="name">ID</label>
+                    <div class="invalid-feedback" data-sb-feedback="name:required">An ID is required.</div>
+                </div>
+            </td>
+        </tr>
+
+    </table>--%>
+
 </asp:Content>
