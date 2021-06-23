@@ -8,30 +8,30 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--===============================================================================================-->
-        <link rel="icon" type="image/png" href="../images/icons/favicon.ico" />
+        <link rel="icon" type="image/png" href="/images/icons/favicon.ico" />
         <!--===============================================================================================-->
 
         <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="../fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+        <link rel="stylesheet" type="text/css" href="/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
         <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="../vendor/animate/animate.css">
+        <link rel="stylesheet" type="text/css" href="/vendor/animate/animate.css">
         <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="../vendor/css-hamburgers/hamburgers.min.css">
+        <link rel="stylesheet" type="text/css" href="/vendor/css-hamburgers/hamburgers.min.css">
         <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="../vendor/animsition/css/animsition.min.css">
+        <link rel="stylesheet" type="text/css" href="/vendor/animsition/css/animsition.min.css">
         <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="../vendor/select2/select2.min.css">
+        <link rel="stylesheet" type="text/css" href="/vendor/select2/select2.min.css">
         <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="../vendor/daterangepicker/daterangepicker.css">
+        <link rel="stylesheet" type="text/css" href="/vendor/daterangepicker/daterangepicker.css">
         <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="../css/util.css">
-        <link rel="stylesheet" type="text/css" href="../css/main.css">
+        <link rel="stylesheet" type="text/css" href="/css/util.css">
+        <link rel="stylesheet" type="text/css" href="/css/main.css">
         <!--===============================================================================================-->
     </head>
 
     <!-- Header -->
     <div class="limiter">
-        <div class="container-login100" style="background-image: url('../images/bg-01.jpg');">
+        <div class="container-login100" style="background-image: url('/images/bg-01.jpg');">
             <div class="container d-flex align-items-center flex-column">
                 <!-- Header Heading -->
                 <h1 class="masthead-heading text-uppercase mb-0" style="color: #ffffff; font-size: 70px">KSU Templetes</h1>
