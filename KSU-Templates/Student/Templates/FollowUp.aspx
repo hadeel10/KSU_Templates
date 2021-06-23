@@ -9,6 +9,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--===============================================================================================-->
+
         <link rel="icon" type="image/png" href="../images/icons/favicon.ico" />
         <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="../fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
@@ -33,7 +34,6 @@
         <link rel="stylesheet" href="/Form_styles/css/style.css" />
     </head>
 
-
     <!-- Header -->
     <div class="limiter">
         <div class="container-login100" style="background-image: url('/images/bg-01.jpg');">
@@ -47,7 +47,9 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- header Subheading -->
+
                 <p class="masthead-subheading font-weight-light mb-0" style="color: #ffffff; font-size: x-large">Effective Date Notice - Trainee Attendance - Follow Up form</p>
+
             </div>
         </div>
     </div>
