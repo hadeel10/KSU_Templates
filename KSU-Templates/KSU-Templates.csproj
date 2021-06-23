@@ -205,7 +205,6 @@
     <Content Include="fonts\font-awesome-4.7.0\scss\_variables.scss" />
     <Content Include="Admin\Web.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Student\HomePage.aspx" />
     <Content Include="Form_styles\fonts\material-design-iconic-font\fonts\Material-Design-Iconic-Font.eot" />
     <Content Include="Form_styles\fonts\material-design-iconic-font\fonts\Material-Design-Iconic-Font.ttf" />
     <Content Include="Form_styles\fonts\material-design-iconic-font\fonts\Material-Design-Iconic-Font.woff" />
@@ -259,6 +258,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="Student\HomePage.aspx" />
     <Content Include="Student\Templates\FollowUp.aspx" />
     <Content Include="vendor\animate\animate.css" />
     <Content Include="vendor\animsition\css\animsition.css" />
@@ -329,12 +329,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Student\HomePage.aspx.cs">
-      <DependentUpon>HomePage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Student\HomePage.aspx.designer.cs">
-      <DependentUpon>HomePage.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Login_and_Register\login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -363,6 +357,13 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Student\HomePage.aspx.cs">
+      <DependentUpon>HomePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\HomePage.aspx.designer.cs">
+      <DependentUpon>HomePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Student\Templates\FollowUp.aspx.cs">
       <DependentUpon>FollowUp.aspx</DependentUpon>

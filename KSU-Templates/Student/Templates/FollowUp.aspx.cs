@@ -11,7 +11,6 @@ namespace KSU_Templates.Templates
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
             txtName.Value = "";
         }
 
@@ -19,7 +18,6 @@ namespace KSU_Templates.Templates
         {
           //  string x = txtName.Value;
            
-
         }
     }
 }

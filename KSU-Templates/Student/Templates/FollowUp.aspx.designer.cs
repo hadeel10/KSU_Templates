@@ -11,7 +11,6 @@ namespace KSU_Templates.Templates {
     
     
     public partial class FollowUp {
-
         
         /// <summary>
         /// txtName control.
@@ -84,6 +83,5 @@ namespace KSU_Templates.Templates {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmit;
-
     }
 }
