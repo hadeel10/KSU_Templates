@@ -58,7 +58,7 @@ namespace KSU_Templates.Login_and_Register
                         addUserToRole(vUser, "student");
                         //  postMsg("User Created Successfuly");
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Acount Created Successfuly')", true);
-                        Response.Redirect("../HomePage");
+                        Response.Redirect("/Student/HomePage");
 
                     }
 
