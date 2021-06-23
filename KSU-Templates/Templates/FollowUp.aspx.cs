@@ -11,7 +11,13 @@ namespace KSU_Templates.Templates
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            txtName.Value = "";
+        }
 
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+          //  string x = txtName.Value;
+           
         }
     }
 }
