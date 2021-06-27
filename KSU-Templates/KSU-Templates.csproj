@@ -260,6 +260,7 @@
     <Content Include="Site.Master" />
     <Content Include="Student\HomePage.aspx" />
     <Content Include="Student\Templates\FollowUp.aspx" />
+    <Content Include="Student\Templates\Attendance.aspx" />
     <Content Include="vendor\animate\animate.css" />
     <Content Include="vendor\animsition\css\animsition.css" />
     <Content Include="vendor\animsition\css\animsition.min.css" />
@@ -296,6 +297,7 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\CRUD.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -371,6 +373,13 @@
     </Compile>
     <Compile Include="Student\Templates\FollowUp.aspx.designer.cs">
       <DependentUpon>FollowUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\Templates\Attendance.aspx.cs">
+      <DependentUpon>Attendance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\Templates\Attendance.aspx.designer.cs">
+      <DependentUpon>Attendance.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
