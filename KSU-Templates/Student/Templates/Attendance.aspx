@@ -110,7 +110,8 @@
 
 
                                     <div class="wizard-header">
-                                        <h3 class="heading">Attendance</h3>                                   
+                                        <h3 class="heading">Attendance</h3>  
+                                        <p>Please enter your infomation.  </p>
                                     </div>
 
                                      <div class="form-row">
@@ -127,8 +128,6 @@
                                                 <option value="6">6</option>
                                                 <option value="7">7</option>
                                                 <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
                                                       </select>
                                           
                                         </div>
@@ -169,7 +168,7 @@
                                             <fieldset>
                                                 <legend>Time in <asp:Label ID="timeInError" runat="server" Text="  *" style="color:red; font-size:16px" Visible="false"></asp:Label>
 </legend>
-                                                <asp:TextBox textmode="Time" format="HH:mm" type="text" class="form-control" id="TimeInField" name="TimeInField" placeholder="Time in" runat="server"></asp:TextBox>
+                                                <asp:TextBox textmode="Time" format="HH:mm" type="text" class="form-control" id="timeInField" name="TimeInField" placeholder="Time in" runat="server"></asp:TextBox>
                                             </fieldset>
                                                 </div>
                                                 <div class="form-holder">
@@ -229,7 +228,7 @@
                                     </div>
             <br /><br />
                                     <div id="dropDownSelect1">
-        <asp:GridView Class="myGridView" Caption="Week1" CaptionAlign="Top" width="100%" ID="gvUsers" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
+        <asp:GridView Class="myGridView" Caption="Week1" CaptionAlign="Top" width="100%" ID="gvUsers" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="false" OnRowDeleting="deleteW1" >
             <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
             <HeaderStyle  Font-Bold="True" ForeColor="black" />
             <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
@@ -238,6 +237,192 @@
             <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
             <SortedDescendingCellStyle BackColor="#E5E5E5" />
             <SortedDescendingHeaderStyle BackColor="#242121" />
+            <Columns>
+
+                    <asp:BoundField DataField ="week" HeaderText ="Week" />    
+                    <asp:BoundField DataField ="day" HeaderText ="Day" />    
+                    <asp:BoundField DataField ="date" HeaderText ="Date" />    
+                    <asp:BoundField DataField ="timeIn" HeaderText ="Time In" />    
+                    <asp:BoundField DataField ="timeOut" HeaderText ="Time Out" />    
+                    <asp:BoundField DataField ="comment" HeaderText ="Comment" />    
+                      <asp:ButtonField runat="server" CausesValidation="false" 
+                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image"/>
+            </Columns>
+        </asp:GridView>
+    </div>
+<br /><br />
+              <div id="dropDownSelect2">
+        <asp:GridView Class="myGridView" Caption="Week2" CaptionAlign="Top" width="100%" ID="GridView2" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="false" OnRowDeleting="deleteW2" >
+            <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+            <HeaderStyle  Font-Bold="True" ForeColor="black" />
+            <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+            <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+            <SortedAscendingCellStyle BackColor="#F7F7F7" />
+            <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+            <SortedDescendingCellStyle BackColor="#E5E5E5" />
+            <SortedDescendingHeaderStyle BackColor="#242121" />
+            <Columns>
+
+                    <asp:BoundField DataField ="week" HeaderText ="Week" />    
+                    <asp:BoundField DataField ="day" HeaderText ="Day" />    
+                    <asp:BoundField DataField ="date" HeaderText ="Date" />    
+                    <asp:BoundField DataField ="timeIn" HeaderText ="Time In" />    
+                    <asp:BoundField DataField ="timeOut" HeaderText ="Time Out" />    
+                    <asp:BoundField DataField ="comment" HeaderText ="Comment" />    
+                      <asp:ButtonField runat="server" CausesValidation="false" 
+                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image"/>
+            </Columns>
+        </asp:GridView>
+    </div>
+
+<br /><br />
+              <div id="dropDownSelect3">
+        <asp:GridView Class="myGridView" Caption="Week3" CaptionAlign="Top" width="100%" ID="GridView3" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="false" OnRowDeleting="deleteW3" >
+            <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+            <HeaderStyle  Font-Bold="True" ForeColor="black" />
+            <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+            <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+            <SortedAscendingCellStyle BackColor="#F7F7F7" />
+            <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+            <SortedDescendingCellStyle BackColor="#E5E5E5" />
+            <SortedDescendingHeaderStyle BackColor="#242121" />
+            <Columns>
+
+                    <asp:BoundField DataField ="week" HeaderText ="Week" />    
+                    <asp:BoundField DataField ="day" HeaderText ="Day" />    
+                    <asp:BoundField DataField ="date" HeaderText ="Date" />    
+                    <asp:BoundField DataField ="timeIn" HeaderText ="Time In" />    
+                    <asp:BoundField DataField ="timeOut" HeaderText ="Time Out" />    
+                    <asp:BoundField DataField ="comment" HeaderText ="Comment" />    
+                      <asp:ButtonField runat="server" CausesValidation="false" 
+                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image"/>
+            </Columns>
+        </asp:GridView>
+    </div>
+<br /><br />
+
+              <div id="dropDownSelect4">
+        <asp:GridView Class="myGridView" Caption="Week4" CaptionAlign="Top" width="100%" ID="GridView4" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="false" OnRowDeleting="deleteW4" >
+            <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+            <HeaderStyle  Font-Bold="True" ForeColor="black" />
+            <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+            <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+            <SortedAscendingCellStyle BackColor="#F7F7F7" />
+            <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+            <SortedDescendingCellStyle BackColor="#E5E5E5" />
+            <SortedDescendingHeaderStyle BackColor="#242121" />
+            <Columns>
+
+                    <asp:BoundField DataField ="week" HeaderText ="Week" />    
+                    <asp:BoundField DataField ="day" HeaderText ="Day" />    
+                    <asp:BoundField DataField ="date" HeaderText ="Date" />    
+                    <asp:BoundField DataField ="timeIn" HeaderText ="Time In" />    
+                    <asp:BoundField DataField ="timeOut" HeaderText ="Time Out" />    
+                    <asp:BoundField DataField ="comment" HeaderText ="Comment" />    
+                      <asp:ButtonField runat="server" CausesValidation="false" 
+                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image"/>
+            </Columns>
+        </asp:GridView>
+    </div>
+
+             <asp:Label ID="emptyGrideViews" runat="server" Text="You do not have any attendance yet" style="color:dimgrey; font-size:16px" Visible="false"></asp:Label>
+<br /><br />
+              <div id="dropDownSelect5">
+        <asp:GridView Class="myGridView" Caption="Week5" CaptionAlign="Top" width="100%" ID="GridView5" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="false" OnRowDeleting="deleteW5" >
+            <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+            <HeaderStyle  Font-Bold="True" ForeColor="black" />
+            <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+            <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+            <SortedAscendingCellStyle BackColor="#F7F7F7" />
+            <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+            <SortedDescendingCellStyle BackColor="#E5E5E5" />
+            <SortedDescendingHeaderStyle BackColor="#242121" />
+            <Columns>
+
+                    <asp:BoundField DataField ="week" HeaderText ="Week" />    
+                    <asp:BoundField DataField ="day" HeaderText ="Day" />    
+                    <asp:BoundField DataField ="date" HeaderText ="Date" />    
+                    <asp:BoundField DataField ="timeIn" HeaderText ="Time In" />    
+                    <asp:BoundField DataField ="timeOut" HeaderText ="Time Out" />    
+                    <asp:BoundField DataField ="comment" HeaderText ="Comment" />    
+                      <asp:ButtonField runat="server" CausesValidation="false" 
+                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image"/>
+            </Columns>
+        </asp:GridView>
+    </div>
+
+<br /><br />
+              <div id="dropDownSelect6">
+        <asp:GridView Class="myGridView" Caption="Week6" CaptionAlign="Top" width="100%" ID="GridView6" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="false" OnRowDeleting="deleteW6" >
+            <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+            <HeaderStyle  Font-Bold="True" ForeColor="black" />
+            <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+            <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+            <SortedAscendingCellStyle BackColor="#F7F7F7" />
+            <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+            <SortedDescendingCellStyle BackColor="#E5E5E5" />
+            <SortedDescendingHeaderStyle BackColor="#242121" />
+            <Columns>
+
+                    <asp:BoundField DataField ="week" HeaderText ="Week" />    
+                    <asp:BoundField DataField ="day" HeaderText ="Day" />    
+                    <asp:BoundField DataField ="date" HeaderText ="Date" />    
+                    <asp:BoundField DataField ="timeIn" HeaderText ="Time In" />    
+                    <asp:BoundField DataField ="timeOut" HeaderText ="Time Out" />    
+                    <asp:BoundField DataField ="comment" HeaderText ="Comment" />    
+                      <asp:ButtonField runat="server" CausesValidation="false" 
+                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image"/>
+            </Columns>
+        </asp:GridView>
+    </div>
+<br /><br />
+
+              <div id="dropDownSelect7">
+        <asp:GridView Class="myGridView" Caption="Week7" CaptionAlign="Top" width="100%" ID="GridView7" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="false" OnRowDeleting="deleteW7" >
+            <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+            <HeaderStyle  Font-Bold="True" ForeColor="black" />
+            <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+            <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+            <SortedAscendingCellStyle BackColor="#F7F7F7" />
+            <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+            <SortedDescendingCellStyle BackColor="#E5E5E5" />
+            <SortedDescendingHeaderStyle BackColor="#242121" />
+            <Columns>
+
+                    <asp:BoundField DataField ="week" HeaderText ="Week" />    
+                    <asp:BoundField DataField ="day" HeaderText ="Day" />    
+                    <asp:BoundField DataField ="date" HeaderText ="Date" />    
+                    <asp:BoundField DataField ="timeIn" HeaderText ="Time In" />    
+                    <asp:BoundField DataField ="timeOut" HeaderText ="Time Out" />    
+                    <asp:BoundField DataField ="comment" HeaderText ="Comment" />    
+                      <asp:ButtonField runat="server" CausesValidation="false" 
+                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image"/>
+            </Columns>
+        </asp:GridView>
+    </div>
+
+<br /><br />
+              <div id="dropDownSelect8">
+        <asp:GridView Class="myGridView" Caption="Week8" CaptionAlign="Top" width="100%" ID="GridView8" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="false" OnRowDeleting="deleteW8" >
+            <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+            <HeaderStyle  Font-Bold="True" ForeColor="black" />
+            <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+            <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+            <SortedAscendingCellStyle BackColor="#F7F7F7" />
+            <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+            <SortedDescendingCellStyle BackColor="#E5E5E5" />
+            <SortedDescendingHeaderStyle BackColor="#242121" />
+            <Columns>
+
+                    <asp:BoundField DataField ="week" HeaderText ="Week" />    
+                    <asp:BoundField DataField ="day" HeaderText ="Day" />    
+                    <asp:BoundField DataField ="date" HeaderText ="Date" />    
+                    <asp:BoundField DataField ="timeIn" HeaderText ="Time In" />    
+                    <asp:BoundField DataField ="timeOut" HeaderText ="Time Out" />    
+                    <asp:BoundField DataField ="comment" HeaderText ="Comment" />    
+                      <asp:ButtonField runat="server" CausesValidation="false" 
+                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image"/>
+            </Columns>
         </asp:GridView>
     </div>
             </section>
@@ -295,6 +480,15 @@ table.myGridView th
 }
 
     </style>
-   
+   <script type="text/javascript">
+    function ConfirmBox() {
+      if (confirm("Are you sure you want to delete this?")) {
+          alert("Yes");
+        } else {
+            alert("No");
+     }
+       }
+       </script>
+
 </asp:Content>
 
