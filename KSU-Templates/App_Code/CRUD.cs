@@ -25,10 +25,10 @@ namespace KSU_TemplatesConnectionString.App_Code
         DataView dv;
         // istesd of pasting connection string in each page this refrence the connection on the webconfig  
         // I create connection string once, then use it in creating a new connection in each method and use the static string "conStr"
-        public static string conStr = WebConfigurationManager.ConnectionStrings["KSU_TemplatesConnectionString"].ConnectionString;
+        public static string conStr = WebConfigurationManager.ConnectionStrings["KSU_Templates_ConStr"].ConnectionString;
 
         // I create a con object once and then use it in methods
-        public SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["KSU_TemplatesConnectionString"].ConnectionString);
+        public SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["KSU_Templates_ConStr"].ConnectionString);
         public CRUD()
         {
             //
