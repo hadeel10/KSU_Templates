@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 /// Summary description for CRUD
 /// </summary>
 /// 
-namespace KSU_TemplatesConnectionString.App_Code
+namespace KSU_Templates.App_Code
 {
 
     public class CRUD
@@ -26,7 +26,6 @@ namespace KSU_TemplatesConnectionString.App_Code
         // istesd of pasting connection string in each page this refrence the connection on the webconfig  
         // I create connection string once, then use it in creating a new connection in each method and use the static string "conStr"
         public static string conStr = WebConfigurationManager.ConnectionStrings["KSU_Templates_ConStr"].ConnectionString;
-
         // I create a con object once and then use it in methods
         public SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["KSU_Templates_ConStr"].ConnectionString);
         public CRUD()
@@ -57,7 +56,7 @@ namespace KSU_TemplatesConnectionString.App_Code
         {
             /// <summary>
             /// Optimized for con Pooling
-            /// </summary> 
+            /// </summary>
             //SqlDataReader dr; // changed on june 25 2019
             using (SqlCommand cmd = new SqlCommand(mySql, con))
             {
@@ -68,11 +67,8 @@ namespace KSU_TemplatesConnectionString.App_Code
                 }
                 con.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
-               
                 return dr;
-               
             }
-           
         }
         public SqlDataReader getDrViaSpWithPara(string mySPName, Dictionary<string, object> myPara) //3
         {

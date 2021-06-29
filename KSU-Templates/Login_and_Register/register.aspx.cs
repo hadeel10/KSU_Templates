@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KSU_Templates.App_Code;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -16,7 +17,7 @@ namespace KSU_Templates.Login_and_Register
         {
 
 
-         
+
 
 
         }
@@ -25,10 +26,11 @@ namespace KSU_Templates.Login_and_Register
         protected void submit(object sender, EventArgs e)
         {
 
-               removeErrorMsg();
-               if (!checkEmptyFieldAndPasswordLength()) {
-                   createUserAccount();
-               }
+            removeErrorMsg();
+            if (!checkEmptyFieldAndPasswordLength())
+            {
+                createUserAccount();
+            }
 
 
         }
@@ -56,6 +58,8 @@ namespace KSU_Templates.Login_and_Register
                         Session["Username"] = userName.Text;
                         Membership.CreateUser(vUser, vPassword, vEmail);
                         addUserToRole(vUser, "student");
+                        createTrainee(vUser, vEmail);
+                        FormsAuthentication.RedirectFromLoginPage(userName.Text, false);
                         //  postMsg("User Created Successfuly");
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Acount Created Successfuly')", true);
                         Response.Redirect("/Student/HomePage");
@@ -72,7 +76,8 @@ namespace KSU_Templates.Login_and_Register
                     }
                     // populateCheckBoxListRolesUsers();
                 }
-                else {
+                else
+                {
                     userError.Attributes["data-validate"] = "Username already exists";
 
                     userError.Attributes.Add("class", "wrap-input100 validate-input alert-validate");
@@ -85,7 +90,7 @@ namespace KSU_Templates.Login_and_Register
                 // postMsg(ex.Message.ToString());  // to do , log the errors  rtn
                 // postMsgClient(ex.Message);
 
-               // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Inserted Successfully')", true);
+                // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Inserted Successfully')", true);
 
             }
 
@@ -118,9 +123,11 @@ namespace KSU_Templates.Login_and_Register
                 isEmptyExist = true;
 
             }
-            else {
+            else
+            {
 
-                if (!checkEmailFormat()) {
+                if (!checkEmailFormat())
+                {
 
                     isEmptyExist = true;
 
@@ -180,9 +187,11 @@ namespace KSU_Templates.Login_and_Register
                 isEmptyExist = true;
 
             }
-            else {
+            else
+            {
 
-                if (string.IsNullOrEmpty(confirmPassword.Text.Trim())) {
+                if (string.IsNullOrEmpty(confirmPassword.Text.Trim()))
+                {
 
                     confirmPasswordError.Attributes["data-validate"] = "White space not valid";
 
@@ -193,14 +202,16 @@ namespace KSU_Templates.Login_and_Register
 
 
                 }
-                else {
-                 
-                        if (!confirmPassword.Text.Trim().Equals(password.Text.Trim())) {
+                else
+                {
 
-                            confirmPasswordError.Attributes["data-validate"] = "Confirm password does not match the password";
+                    if (!confirmPassword.Text.Trim().Equals(password.Text.Trim()))
+                    {
+
+                        confirmPasswordError.Attributes["data-validate"] = "Confirm password does not match the password";
 
 
-                            confirmPasswordError.Attributes.Add("class", "wrap-input100 validate-input alert-validate");
+                        confirmPasswordError.Attributes.Add("class", "wrap-input100 validate-input alert-validate");
 
                         isEmptyExist = true;
 
@@ -216,7 +227,8 @@ namespace KSU_Templates.Login_and_Register
 
         //***************************************************************
 
-        protected void removeErrorMsg() {
+        protected void removeErrorMsg()
+        {
 
             userError.Attributes["class"].ToString().Replace("alert-validate", "");
             if (!string.IsNullOrEmpty(userName.Text))
@@ -245,9 +257,10 @@ namespace KSU_Templates.Login_and_Register
 
         //***************************************************************
 
-        protected bool checkEmailFormat() {
+        protected bool checkEmailFormat()
+        {
 
-            bool isEmailFormatCorrect = true; 
+            bool isEmailFormatCorrect = true;
 
             string email1 = email.Text;
             Regex regex = new Regex(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
@@ -260,11 +273,11 @@ namespace KSU_Templates.Login_and_Register
 
                 emailError.Attributes.Add("class", "wrap-input100 validate-input alert-validate");
 
-                isEmailFormatCorrect = false; 
+                isEmailFormatCorrect = false;
             }
 
             return isEmailFormatCorrect;
-          
+
         }
         //***************************************************************
 
@@ -274,6 +287,14 @@ namespace KSU_Templates.Login_and_Register
                 Roles.AddUserToRole(user, role);
             return;
         }
-
+        void createTrainee(string user, string email) {
+            CRUD myCrud = new CRUD();
+            string mySql = @"INSERT INTO trainee(userName, email, institutionId)
+              VALUES (@userN, @userEmail, 1)";
+            Dictionary<string, object> myPara = new Dictionary<string, object>();
+            myPara.Add("@userN", user);
+            myPara.Add("@userEmail", email);
+            int rtn = myCrud.InsertUpdateDelete(mySql, myPara);
+        }
     }
 }
