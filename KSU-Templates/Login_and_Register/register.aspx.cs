@@ -289,7 +289,7 @@ namespace KSU_Templates.Login_and_Register
         }
         void createTrainee(string user, string email) {
             CRUD myCrud = new CRUD();
-            string mySql = @"INSERT INTO trainee(userName, email, institutionId)
+            string mySql = @"INSERT INTO trainee(userName, traineeEmail, institutionId)
               VALUES (@userN, @userEmail, 1)";
             Dictionary<string, object> myPara = new Dictionary<string, object>();
             myPara.Add("@userN", user);

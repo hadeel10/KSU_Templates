@@ -21,7 +21,7 @@ namespace KSU_Templates.Student.Templates
 
                 displayAttendanceInformation();
                 getStudentInfo();
-
+                checkEmptyGrideViews();
             }
 
 
@@ -34,11 +34,19 @@ namespace KSU_Templates.Student.Templates
             removeError();
             if (!checkEmptyField())
             {
-                saveAttendance();
-                updateTrainee();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Saved succefully')", true);
-                Response.Redirect(Request.RawUrl);
+                if (!checkAttendance(week.Value.ToString(), ddlDay.SelectedIndex.ToString()))
+                {
+                    saveAttendance();
+                    updateTrainee();
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Saved succefully')", true);
+                    Response.Redirect(Request.RawUrl);
+                }
+                else
+                {
 
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('You have an attendance record same a week and day entered, please delete the previous one !!!')", true);
+
+                }
             }
             else {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please fill out the required field !!')", true);
@@ -50,7 +58,7 @@ namespace KSU_Templates.Student.Templates
         protected void displayAttendanceInformation()
         {
 
-            string sqlCmd = "select * from attendance where userName ='" + Session["Username"] + "'";
+            string sqlCmd = "select * from attendance INNER JOIN day ON attendance.dayId =day.dayId where userName ='" + Session["Username"] + "' and week = '1' ";
 
             string conString = CRUD.conStr;//..CRUD.DB_CONN_ST; //WebConfigurationManager.ConnectionStrings["conStrInternship"].ConnectionString;//WebConfigurationManager.ConnectionStrings["FtreeConStrlocal"].ConnectionString;
             SqlDataAdapter dad = new SqlDataAdapter(sqlCmd, conString);
@@ -59,24 +67,62 @@ namespace KSU_Templates.Student.Templates
             gvUsers.DataSource = dtUserRoles;
             gvUsers.DataBind();
 
+            string sqlCmd2 = "select * from attendance INNER JOIN day ON attendance.dayId =day.dayId where userName ='" + Session["Username"] + "' and week = '2' ";
 
-           /* DataTable dtUserRoles = new DataTable();
-            dtUserRoles.Columns.Add("Day");
-            dtUserRoles.Columns.Add("Date");
-            dtUserRoles.Columns.Add("Time in");
-            dtUserRoles.Columns.Add("Time out");
-            dtUserRoles.Columns.Add("Signature");
-            dtUserRoles.Columns.Add("Comments");
-            dtUserRoles.Columns.Add("delete");
+            SqlDataAdapter dad2 = new SqlDataAdapter(sqlCmd2, conString);
+            DataTable dtUserRoles2 = new DataTable();
+            dad2.Fill(dtUserRoles2);
+            GridView2.DataSource = dtUserRoles2;
+            GridView2.DataBind();
 
-            dtUserRoles.Rows.Add("hadeel", "hadeel", "hadeel", "hadeel", "hadeel", "hadeel", "hadeel");
+            string sqlCmd3 = "select * from attendance INNER JOIN day ON attendance.dayId =day.dayId where userName ='" + Session["Username"] + "' and week = '3' ";
 
-            gvUsers.DataSource = dtUserRoles;
-            gvUsers.DataBind();*/
+            SqlDataAdapter dad3 = new SqlDataAdapter(sqlCmd3, conString);
+            DataTable dtUserRoles3 = new DataTable();
+            dad3.Fill(dtUserRoles3);
+            GridView3.DataSource = dtUserRoles3;
+            GridView3.DataBind();
+
+            string sqlCmd4 = "select * from attendance INNER JOIN day ON attendance.dayId =day.dayId where userName ='" + Session["Username"] + "' and week = '4' ";
+
+            SqlDataAdapter dad4 = new SqlDataAdapter(sqlCmd4, conString);
+            DataTable dtUserRoles4 = new DataTable();
+            dad4.Fill(dtUserRoles4);
+            GridView4.DataSource = dtUserRoles4;
+            GridView4.DataBind();
+
+            string sqlCmd5 = "select * from attendance INNER JOIN day ON attendance.dayId =day.dayId where userName ='" + Session["Username"] + "' and week = '5' ";
+
+            SqlDataAdapter dad5 = new SqlDataAdapter(sqlCmd5, conString);
+            DataTable dtUserRoles5 = new DataTable();
+            dad5.Fill(dtUserRoles5);
+            GridView5.DataSource = dtUserRoles5;
+            GridView5.DataBind();
 
 
+            string sqlCmd6 = "select * from attendance INNER JOIN day ON attendance.dayId =day.dayId where userName ='" + Session["Username"] + "' and week = '6' ";
 
+            SqlDataAdapter dad6 = new SqlDataAdapter(sqlCmd6, conString);
+            DataTable dtUserRoles6 = new DataTable();
+            dad6.Fill(dtUserRoles6);
+            GridView6.DataSource = dtUserRoles6;
+            GridView6.DataBind();
 
+            string sqlCmd7 = "select * from attendance INNER JOIN day ON attendance.dayId =day.dayId where userName ='" + Session["Username"] + "' and week = '7' ";
+
+            SqlDataAdapter dad7 = new SqlDataAdapter(sqlCmd7, conString);
+            DataTable dtUserRoles7 = new DataTable();
+            dad7.Fill(dtUserRoles7);
+            GridView7.DataSource = dtUserRoles7;
+            GridView7.DataBind();
+
+            string sqlCmd8 = "select * from attendance INNER JOIN day ON attendance.dayId =day.dayId where userName ='" + Session["Username"] + "' and week = '8' ";
+
+            SqlDataAdapter dad8 = new SqlDataAdapter(sqlCmd8, conString);
+            DataTable dtUserRoles8 = new DataTable();
+            dad8.Fill(dtUserRoles8);
+            GridView8.DataSource = dtUserRoles8;
+            GridView8.DataBind();
         }
         //***************************************************************
 
@@ -85,7 +131,7 @@ namespace KSU_Templates.Student.Templates
             if (Session["Username"] != null)
             {
                 CRUD myCrud = new CRUD();
-                string mySql = @"select name, triningStartingDate, id, institutionId from trainee where userName = @userN ";
+                string mySql = @"select trainee, triningStartingDate, id, institutionId from trainee where userName = @userN ";
                 Dictionary<string, object> myPara = new Dictionary<string, object>();
                 myPara.Add("@userN", Session["Username"]);
                 SqlDataReader dr = myCrud.getDrPassSql(mySql, myPara);
@@ -93,7 +139,7 @@ namespace KSU_Templates.Student.Templates
                 {
                     while (dr.Read())
                     {
-                        String namee = dr["name"].ToString();
+                        String namee = dr["trainee"].ToString();
                         String startingD = dr["triningStartingDate"].ToString();
                         String id = dr["id"].ToString();
                         name.Text = namee;
@@ -178,7 +224,7 @@ namespace KSU_Templates.Student.Templates
 
                 isEmptyExist = true;
             }
-            if (string.IsNullOrEmpty(TimeInField.Text.Trim()))
+            if (string.IsNullOrEmpty(timeInField.Text.Trim()))
             {
                 timeInError.Visible = true;
 
@@ -241,7 +287,7 @@ namespace KSU_Templates.Student.Templates
                 dateError.Visible = false;
 
             }
-            if (!string.IsNullOrEmpty(TimeInField.Text.Trim()))
+            if (!string.IsNullOrEmpty(timeInField.Text.Trim()))
             {
                 timeInError.Visible = false;
 
@@ -263,45 +309,206 @@ namespace KSU_Templates.Student.Templates
         //***************************************************************
 
         protected void saveAttendance() {
-
-            CRUD myCrud = new CRUD();
-            string mySql = @"INSERT INTO attendance (week, dayId, date, comment, userName)
-              VALUES (@week, @dayId , @date, @comment, @userName)";
-            Dictionary<string, object> myPara = new Dictionary<string, object>();
-            myPara.Add("@week", week.Value.ToString());
-            myPara.Add("@dayId", ddlDay.SelectedIndex.ToString());
-            myPara.Add("@date", attendanceDate.Text.ToString());
-            myPara.Add("@comment", comments.Value);
-            myPara.Add("@userName", Session["Username"]);
-            myCrud.InsertUpdateDelete(mySql, myPara);
-
+           
+                CRUD myCrud = new CRUD();
+                string mySql = @"INSERT INTO attendance (week, dayId, date, timeIn, timeOut, comment, userName)
+              VALUES (@week, @dayId , @date, @timeIn, @timeOut,  @comment, @userName)";
+                Dictionary<string, object> myPara = new Dictionary<string, object>();
+                myPara.Add("@week", week.Value.ToString());
+                myPara.Add("@dayId", ddlDay.SelectedIndex.ToString());
+                myPara.Add("@date", attendanceDate.Text.ToString());
+                myPara.Add("@timeIn", timeInField.Text.ToString());
+                myPara.Add("@timeOut", timeOutField.Text.ToString());
+                myPara.Add("@comment", comments.Value.ToString());
+                myPara.Add("@userName", Session["Username"]);
+                myCrud.InsertUpdateDelete(mySql, myPara);
+            
         }
-        protected void updateTrainee()
+        protected bool checkAttendance(String week , String day) /// check if attendance exist or not (to prevent the user from add duplicate attendance)
+        {
+            bool exist = false;
+            if (Session["Username"] != null)
+            {
+                CRUD myCrud = new CRUD();
+                string mySql = @"select * from attendance where userName = @userN and week = @week and dayId = @day";
+                Dictionary<string, object> myPara = new Dictionary<string, object>();
+                myPara.Add("@userN", Session["Username"]);
+                myPara.Add("@week", week );
+                myPara.Add("@day", day);
+
+                SqlDataReader dr = myCrud.getDrPassSql(mySql, myPara);
+                if (dr.HasRows)
+                {
+                    exist = true;
+                }
+            }
+
+            return exist;
+        }
+            protected void updateTrainee()
         {
 
             CRUD myCrud = new CRUD();
             string mySql = @"UPDATE trainee
-                     SET name = @name, id = @id, triningStartingDate = @strDate
+                     SET trainee = @trainee, id = @id, triningStartingDate = @strDate
                         WHERE userName = @userName ";
             Dictionary<string, object> myPara = new Dictionary<string, object>();
-            myPara.Add("@name", name.Text.ToString());
+            myPara.Add("@trainee", name.Text.ToString());
             myPara.Add("@id", idd.Text.ToString());
             myPara.Add("@strDate", startingDate.Text.ToString());
             myPara.Add("@userName", Session["Username"]);
             myCrud.InsertUpdateDelete(mySql, myPara);
 
         }
-      /*  protected void updateIstituation()
-        {
-            CRUD myCrud = new CRUD();
-            string mySql = @"UPDATE [dbo].[institution]
-              SET institution = @institution
-                WHERE institutionId = 1;";
-            Dictionary<string, object> myPara = new Dictionary<string, object>();
-            myPara.Add("@institution", institution.Value.ToString());
-            myCrud.InsertUpdateDelete(mySql, myPara);
+        protected void deleteW1(Object sender, GridViewDeleteEventArgs e) {
 
-        } */
+
+                String week = gvUsers.Rows[e.RowIndex].Cells[0].Text.ToString();
+                String day = gvUsers.Rows[e.RowIndex].Cells[1].Text.ToString();
+                CRUD myCrud = new CRUD();
+                string sqlCmd = "delete from attendance where userName = '" + Session["Username"] + "' and week = '" + week + "' and dayId = " + getDayId(day) + "";
+                myCrud.InsertUpdateDelete(sqlCmd);
+
+                displayAttendanceInformation();
+            checkEmptyGrideViews();
+
+
+        }
+        protected void deleteW2(Object sender, GridViewDeleteEventArgs e)
+        {
+
+
+            String week = GridView2.Rows[e.RowIndex].Cells[0].Text.ToString();
+            String day = GridView2.Rows[e.RowIndex].Cells[1].Text.ToString();
+            CRUD myCrud = new CRUD();
+            string sqlCmd = "delete from attendance where userName = '" + Session["Username"] + "' and week = '" + week + "' and dayId = " + getDayId(day) + "";
+            myCrud.InsertUpdateDelete(sqlCmd);
+
+            displayAttendanceInformation();
+            checkEmptyGrideViews();
+
+
+        }
+        protected void deleteW3(Object sender, GridViewDeleteEventArgs e)
+        {
+
+
+            String week = GridView3.Rows[e.RowIndex].Cells[0].Text.ToString();
+            String day = GridView3.Rows[e.RowIndex].Cells[1].Text.ToString();
+            CRUD myCrud = new CRUD();
+            string sqlCmd = "delete from attendance where userName = '" + Session["Username"] + "' and week = '" + week + "' and dayId = " + getDayId(day) + "";
+            myCrud.InsertUpdateDelete(sqlCmd);
+
+            displayAttendanceInformation();
+            checkEmptyGrideViews();
+
+
+        }
+        protected void deleteW4(Object sender, GridViewDeleteEventArgs e)
+        {
+
+
+            String week = GridView4.Rows[e.RowIndex].Cells[0].Text.ToString();
+            String day = GridView4.Rows[e.RowIndex].Cells[1].Text.ToString();
+            CRUD myCrud = new CRUD();
+            string sqlCmd = "delete from attendance where userName = '" + Session["Username"] + "' and week = '" + week + "' and dayId = " + getDayId(day) + "";
+            myCrud.InsertUpdateDelete(sqlCmd);
+
+            displayAttendanceInformation();
+            checkEmptyGrideViews();
+
+
+        }
+        protected void deleteW5(Object sender, GridViewDeleteEventArgs e)
+        {
+
+
+            String week = GridView5.Rows[e.RowIndex].Cells[0].Text.ToString();
+            String day = GridView5.Rows[e.RowIndex].Cells[1].Text.ToString();
+            CRUD myCrud = new CRUD();
+            string sqlCmd = "delete from attendance where userName = '" + Session["Username"] + "' and week = '" + week + "' and dayId = " + getDayId(day) + "";
+            myCrud.InsertUpdateDelete(sqlCmd);
+
+            displayAttendanceInformation();
+            checkEmptyGrideViews();
+
+
+        }
+        protected void deleteW6(Object sender, GridViewDeleteEventArgs e)
+        {
+
+
+            String week = GridView6.Rows[e.RowIndex].Cells[0].Text.ToString();
+            String day = GridView6.Rows[e.RowIndex].Cells[1].Text.ToString();
+            CRUD myCrud = new CRUD();
+            string sqlCmd = "delete from attendance where userName = '" + Session["Username"] + "' and week = '" + week + "' and dayId = " + getDayId(day) + "";
+            myCrud.InsertUpdateDelete(sqlCmd);
+
+            displayAttendanceInformation();
+            checkEmptyGrideViews();
+
+
+        }
+        protected void deleteW7(Object sender, GridViewDeleteEventArgs e)
+        {
+
+
+            String week = GridView7.Rows[e.RowIndex].Cells[0].Text.ToString();
+            String day = GridView7.Rows[e.RowIndex].Cells[1].Text.ToString();
+            CRUD myCrud = new CRUD();
+            string sqlCmd = "delete from attendance where userName = '" + Session["Username"] + "' and week = '" + week + "' and dayId = " + getDayId(day) + "";
+            myCrud.InsertUpdateDelete(sqlCmd);
+
+            displayAttendanceInformation();
+            checkEmptyGrideViews();
+
+
+        }
+        protected void deleteW8(Object sender, GridViewDeleteEventArgs e)
+        {
+
+
+            String week = GridView8.Rows[e.RowIndex].Cells[0].Text.ToString();
+            String day = GridView8.Rows[e.RowIndex].Cells[1].Text.ToString();
+            CRUD myCrud = new CRUD();
+            string sqlCmd = "delete from attendance where userName = '" + Session["Username"] + "' and week = '" + week + "' and dayId = " + getDayId(day) + "";
+            myCrud.InsertUpdateDelete(sqlCmd);
+
+            displayAttendanceInformation();
+            checkEmptyGrideViews();
+
+
+        }
+        protected int getDayId(String day)
+        {
+            if (day.Trim().Equals("Sunday")) { return 1; }
+            if (day.Trim().Equals("Monday")) { return 2; }
+            if (day.Trim().Equals("Tuesday")) { return 3; }
+            if (day.Trim().Equals("Wednesday")) { return 4; }
+            if (day.Trim().Equals("Thursday")) { return 5; } else { return 0; }
+
+        }
+
+        protected void checkEmptyGrideViews() {
+
+            if (gvUsers.Rows.Count == 0 && GridView2.Rows.Count == 0 && GridView3.Rows.Count == 0 && GridView4.Rows.Count == 0 && GridView5.Rows.Count == 0 && GridView6.Rows.Count == 0 && GridView7.Rows.Count == 0 && GridView8.Rows.Count == 0) {
+
+                emptyGrideViews.Visible = true;
+            }
+
+
+        }
+        /*  protected void updateIstituation()
+          {
+              CRUD myCrud = new CRUD();
+              string mySql = @"UPDATE [dbo].[institution]
+                SET institution = @institution
+                  WHERE institutionId = 1;";
+              Dictionary<string, object> myPara = new Dictionary<string, object>();
+              myPara.Add("@institution", institution.Value.ToString());
+              myCrud.InsertUpdateDelete(mySql, myPara);
+
+          } */
 
     }
 }
