@@ -38,7 +38,7 @@ namespace KSU_Templates.Student.Templates
                 {
                     saveAttendance();
                     updateTrainee();
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Saved succefully')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Saved Successfully')", true);
                     Response.Redirect(Request.RawUrl);
                 }
                 else
