@@ -61,7 +61,7 @@ namespace KSU_Templates.Login_and_Register
                         createTrainee(vUser, vEmail);
                         FormsAuthentication.RedirectFromLoginPage(userName.Text, false);
                         //  postMsg("User Created Successfuly");
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Acount Created Successfuly')", true);
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Acount Created Successfully')", true);
                         Response.Redirect("/Student/HomePage");
 
                     }

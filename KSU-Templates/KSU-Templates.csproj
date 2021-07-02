@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\..\..\Desktop\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
@@ -106,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Admin\crudOperation.aspx" />
     <Content Include="Bootstrap\Template.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\assets\favicon.ico" />
@@ -225,6 +229,7 @@
     <Content Include="images\Component 2.png" />
     <Content Include="images\Component 3.png" />
     <Content Include="images\Component 4.png" />
+    <Content Include="images\edit.png" />
     <Content Include="images\icons\favicon.ico" />
     <Content Include="images\x-button.png" />
     <Content Include="Login_and_Register\login.aspx" />
@@ -298,6 +303,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\crudOperation.aspx.cs">
+      <DependentUpon>crudOperation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\crudOperation.aspx.designer.cs">
+      <DependentUpon>crudOperation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Code\CRUD.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">

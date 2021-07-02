@@ -94,8 +94,14 @@ namespace KSU_Templates.Login_and_Register
             if (blnAuthenticate)
             {
                 FormsAuthentication.RedirectFromLoginPage(userName.Text, false);
-                Response.Redirect("../Student/HomePage");
+                if (Roles.IsUserInRole(userName.Text.ToString(), "admin"))
+                {
+                    Response.Redirect("/Admin/crudOperation");
 
+                }
+                else {
+                    Response.Redirect("/Student/HomePage");
+                }
                 // email admin when a user logged in the site
                 DateTime myDate = DateTime.Now;
             }
