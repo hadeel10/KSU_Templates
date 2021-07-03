@@ -28,6 +28,8 @@ namespace KSU_Templates.Admin
                 populateMajor();
             }
         }
+        //***************************************************************
+
         void FillGrid()
         {
             try
@@ -47,6 +49,7 @@ namespace KSU_Templates.Admin
 
             }
         }
+        //***************************************************************
 
         protected void update(object sender, EventArgs e)
         {
@@ -69,6 +72,8 @@ namespace KSU_Templates.Admin
             FillGrid();
 
         }
+        //***************************************************************
+
         protected void addNewTrainee()
         {
             try
@@ -116,12 +121,16 @@ namespace KSU_Templates.Admin
             
 
         }
+        //***************************************************************
+
         void addUserToRole(string user, string role)
         {
             if (!Roles.IsUserInRole(role))
                 Roles.AddUserToRole(user, role);
             return;
         }
+        //***************************************************************
+
         void createTrainee(string user, string email)
         {
             CRUD myCrud = new CRUD();
@@ -141,6 +150,8 @@ namespace KSU_Templates.Admin
 
             int rtn = myCrud.InsertUpdateDelete(mySql, myPara);
         }
+        //***************************************************************
+
         protected void save(object sender, EventArgs e) {
 
             removeError();
@@ -184,6 +195,7 @@ namespace KSU_Templates.Admin
         }
 
 
+        //***************************************************************
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
@@ -208,6 +220,8 @@ namespace KSU_Templates.Admin
             grow.BackColor = System.Drawing.Color.LightBlue; //  
 
         }
+        //***************************************************************
+
         protected void btnDelete2_Click(object sender, EventArgs e)
         {
 
@@ -237,6 +251,8 @@ namespace KSU_Templates.Admin
             
 
         }
+        //***************************************************************
+
         protected void populateMajor()
         {
             CRUD myCrud = new CRUD();
@@ -248,6 +264,8 @@ namespace KSU_Templates.Admin
             ddlMajor.DataSource = dr;
             ddlMajor.DataBind();
         }
+        //***************************************************************
+
         protected String getIndexMajor(String major)
         {
             String majorResult = "0";
@@ -266,6 +284,8 @@ namespace KSU_Templates.Admin
             }
             return majorResult;
         }
+        //***************************************************************
+
         protected String getUserId(String userName)
         {
             String userId = null;
@@ -284,11 +304,15 @@ namespace KSU_Templates.Admin
             }
             return userId;
         }
+        //***************************************************************
+
         protected void exportToExcel(object sender, EventArgs e)
         {
             ExportGridToExcel(gvDepartments);
           
         }
+        //***************************************************************
+
         public void ExportGridToExcel(GridView grd)
         {
             Response.Clear();
@@ -307,12 +331,15 @@ namespace KSU_Templates.Admin
             Response.Flush();
             Response.End();
         }
+        //***************************************************************
 
         protected void exportToWord(object sender, EventArgs e)
         {
             ExportGridToWord(gvDepartments);
 
         }
+        //***************************************************************
+
         public void ExportGridToWord(GridView grd)
         {
             Response.Clear();
@@ -331,11 +358,15 @@ namespace KSU_Templates.Admin
             Response.Flush();
             Response.End();
         }
+        //***************************************************************
+
         protected void exportToPDF(object sender, EventArgs e)
         {
             ExportGridToPDF(gvDepartments);
 
         }
+        //***************************************************************
+
         public void ExportGridToPDF(GridView grd)
         {
             Response.ContentType = "application/pdf";
@@ -356,6 +387,7 @@ namespace KSU_Templates.Admin
             grd.AllowPaging = true;
             grd.DataBind();
         }
+        //***************************************************************
 
         protected void gvChangeColor()
         {
@@ -371,15 +403,21 @@ namespace KSU_Templates.Admin
                 }
             }
         }
+        //***************************************************************
+
         public override void VerifyRenderingInServerForm(Control control)
         {
             /* Verifies that the control is rendered */
         }
+        //***************************************************************
+
         protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvDepartments.PageIndex = e.NewPageIndex;
             this.FillGrid();
         }
+        //***************************************************************
+
         protected void addTrainee(object sender, EventArgs e)
         {
             clearFields();
@@ -389,6 +427,8 @@ namespace KSU_Templates.Admin
             btnSave.Visible = true;
 
         }
+        //***************************************************************
+
         public void clearFields() {
 
             userNameAdd.Text = "";
@@ -425,6 +465,8 @@ namespace KSU_Templates.Admin
 
             }                    
         }
+        //***************************************************************
+
         protected bool checkEmptyField()
         {
 
@@ -450,6 +492,8 @@ namespace KSU_Templates.Admin
             }
             return isEmptyExist;
         }
+        //***************************************************************
+
         protected bool checkEmailFormat(TextBox email)
         {
 

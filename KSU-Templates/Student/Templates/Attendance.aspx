@@ -75,6 +75,9 @@
                                         <h3 class="heading">Trainee's information</h3>
                                         <p>Please enter your infomation.  </p>
                                     </div>
+                                   
+                                    <%--trainee information (student)--%>
+
                                     <div class="form-row">
                                         <div class="form-holder">
                                             <fieldset>
@@ -108,6 +111,7 @@
                                         </div>
                                     </div>
 
+                                <%--Attendance information--%>
 
                                     <div class="wizard-header">
                                         <h3 class="heading">Attendance</h3>  
@@ -189,16 +193,22 @@
                                         </div>
                                     </div>
 
-                                <div class="form-row">
-                                        <div class="form-holder form-holder-2">
-                                            <label class="special-label">Signature:<asp:Label ID="signatureError" runat="server" Text="  *" style="color:red; font-size:16px" Visible="false"></asp:Label>
-</label>
-                                       &ensp; &ensp;<a href="../Login_and_Register/register"> Click to add Image </a>
-						
-                                        </div>
+                                <%--Signature upload--%>
+                                    <div class="wizard-header">
+                                        <h3 class="heading">Signature upload</h3>
+                                        <p>Please upload your Signature </p>
+
+                                        <br />
+                                        <asp:FileUpload id="FileUpload1" runat="server" onchange="ImagePreview(this);" BackColor="#2c3e50" ForeColor="White" BorderColor="#2c3e50e" />
                                     </div>
+
+                                  <div class="wizard-header" id="imageDiv">
+                                      <asp:Image ID="oldSignature" Visible="false" runat="server" Height="200" Width="200" />
+                                    <asp:Image ID="newSignature" style="display:none"  runat="server" Height="120px" Width="117px" />
+                                        </div>
                                
-                                    
+                                    <%--Submit--%>
+                
 
                                      <div class="form-row">
                                     <div class="container-login100-form-btn m-t-32">
@@ -227,6 +237,9 @@
                                         <p>You can delete any attendance information and resubmit it again</p>
                                     </div>
             <br /><br />
+
+                                            <%--Week 1 Gride view --%>
+
                                     <div id="dropDownSelect1">
         <asp:GridView Class="myGridView" Caption="Week1" CaptionAlign="Top" width="100%" ID="gvUsers" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="false" OnRowDeleting="deleteW1" >
             <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
@@ -251,6 +264,8 @@
         </asp:GridView>
     </div>
 <br /><br />
+                                     <%--Week 2 Gride view --%>
+
               <div id="dropDownSelect2">
         <asp:GridView Class="myGridView" Caption="Week2" CaptionAlign="Top" width="100%" ID="GridView2" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="false" OnRowDeleting="deleteW2" >
             <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
@@ -276,6 +291,8 @@
     </div>
 
 <br /><br />
+                                  <%--Week 3 Gride view --%>
+
               <div id="dropDownSelect3">
         <asp:GridView Class="myGridView" Caption="Week3" CaptionAlign="Top" width="100%" ID="GridView3" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="false" OnRowDeleting="deleteW3" >
             <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
@@ -300,6 +317,7 @@
         </asp:GridView>
     </div>
 <br /><br />
+                                            <%--Week 4 Gride view --%>
 
               <div id="dropDownSelect4">
         <asp:GridView Class="myGridView" Caption="Week4" CaptionAlign="Top" width="100%" ID="GridView4" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="false" OnRowDeleting="deleteW4" >
@@ -327,6 +345,8 @@
 
              <asp:Label ID="emptyGrideViews" runat="server" Text="You do not have any attendance yet" style="color:dimgrey; font-size:16px" Visible="false"></asp:Label>
 <br /><br />
+                                        <%--Week 5 Gride view --%>
+
               <div id="dropDownSelect5">
         <asp:GridView Class="myGridView" Caption="Week5" CaptionAlign="Top" width="100%" ID="GridView5" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="false" OnRowDeleting="deleteW5" >
             <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
@@ -352,6 +372,8 @@
     </div>
 
 <br /><br />
+                                             <%--Week 6 Gride view --%>
+
               <div id="dropDownSelect6">
         <asp:GridView Class="myGridView" Caption="Week6" CaptionAlign="Top" width="100%" ID="GridView6" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="false" OnRowDeleting="deleteW6" >
             <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
@@ -376,6 +398,7 @@
         </asp:GridView>
     </div>
 <br /><br />
+                                         <%--Week 7 Gride view --%>
 
               <div id="dropDownSelect7">
         <asp:GridView Class="myGridView" Caption="Week7" CaptionAlign="Top" width="100%" ID="GridView7" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="false" OnRowDeleting="deleteW7" >
@@ -402,6 +425,8 @@
     </div>
 
 <br /><br />
+                                            <%--Week 8 Gride view --%>
+
               <div id="dropDownSelect8">
         <asp:GridView Class="myGridView" Caption="Week8" CaptionAlign="Top" width="100%" ID="GridView8" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="false" OnRowDeleting="deleteW8" >
             <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
@@ -431,6 +456,8 @@
     <script src="/Form_styles/js/jquery-3.3.1.min.js"></script>
     <script src="/Form_styles/js/jquery.steps.js"></script>
     <script src="/Form_styles/js/main.js"></script>
+
+                                             <%-- style --%>
     <style>
         .section {
             margin-left:50px;margin-right:50px; background-color:white; text-align: center;border-radius: 25px; padding: 40px;box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);-o-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);-ms-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);-moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);-webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
@@ -480,6 +507,9 @@ table.myGridView th
 }
 
     </style>
+
+          <%-- script --%>
+
    <script type="text/javascript">
     function ConfirmBox() {
       if (confirm("Are you sure you want to delete this?")) {
@@ -488,6 +518,21 @@ table.myGridView th
             alert("No");
      }
        }
+
+       function ImagePreview(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                     $('#<%=oldSignature.ClientID%>').hide();
+                    $('#<%=newSignature.ClientID%>').show();
+                    $('#<%=newSignature.ClientID%>').prop('src', e.target.result)
+                        .width(200)
+                        .height(200);
+                };
+                reader.readAsDataURL(input.files[0]);
+                }
+       }
+
        </script>
 
 </asp:Content>
