@@ -21,7 +21,9 @@ namespace KSU_Templates.Templates
             {
                 populateWeekComb();
                 getStudentInfo();
+                displayFollowUpInformation();
             }
+
         }
         //***************************************************************
         protected void populateWeekComb()
@@ -42,88 +44,66 @@ namespace KSU_Templates.Templates
             removeError();
             if (isEmptyFields())
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please fill out the required fields !!')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please fill out the required fields!!')", true);
             }
             else
             {
-                submitInformation();
-                updateTrainee();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('week1 task submited succefully')", true);
-                Response.Redirect(Request.RawUrl);
+                if ("Submit".Equals(btnSubmit.Text))
+                {
+                    submitInformation();
+                    updateTrainee();
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('week"+ddlWeek.SelectedIndex+ " tasks submitted successfully!!')", true);
+                    getStudentInfo();
+                    displayFollowUpInformation();
+                }
+                else
+                {
+                    updateTasks();
+                    updateTrainee();
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('week" + ddlWeek.SelectedIndex + " tasks updated successfully!!')", true);
+                    getStudentInfo();
+                    displayFollowUpInformation();
+                }
+              
 
             }
+        }
+        //***************************************************************
+        protected void updateTasks()
+        {
+            CRUD myCrud = new CRUD();
+            string mySql = @"UPDATE followup
+                     SET task1 = @task1, task2 = @task2, task3 = @task3, task4 = @task4
+                        WHERE userName = @userName and weekId = @weekId";
+            Dictionary<string, object> myPara = new Dictionary<string, object>();
+            myPara.Add("@userName", Session["Username"]);
+            myPara.Add("@weekId", int.Parse(ddlWeek.SelectedIndex.ToString()));
+            myPara.Add("@task1", task1.Text.Trim());
+            myPara.Add("@task2", task2.Text.Trim());
+            myPara.Add("@task3", task3.Text.Trim());
+            myPara.Add("@task4", task4.Text.Trim());
+            myCrud.InsertUpdateDelete(mySql, myPara);
         }
         //***************************************************************
         protected void submitInformation()
         {
-            int tasksNumber = getTasksNumber();
-            using (var con = new SqlConnection("Data Source=SQL5085.site4now.net;Initial Catalog=db_a75975_hadeell10;User Id=db_a75975_hadeell10_admin;Password=kfmc123456"))
-            {
-                con.Open();
-                var sql = @"INSERT INTO followup (userName,taskId,weekId,task)
-                    VALUES (@userName, @taskId,@weekId,@task)";
+            CRUD myCrud = new CRUD();
+                string mySql = @"INSERT INTO followup (userName,weekId,task1,task2,task3,task4)
+                    VALUES (@userName, @weekId,@task1,@task2,@task3,@task4)";
 
-                using (var comm = new SqlCommand(sql, con))
-                {
-                    comm.Parameters.Add("@userName", SqlDbType.NVarChar);
-                    comm.Parameters.Add("@taskId", SqlDbType.Int);
-                    comm.Parameters.Add("@weekId", SqlDbType.Int);
-                    comm.Parameters.Add("@task", SqlDbType.NVarChar);
-                    while (tasksNumber > 0)
-                    {
-                        {
-                            comm.Parameters["@userName"].Value = Session["Username"];
-                            comm.Parameters["@taskId"].Value = tasksNumber;
-                            comm.Parameters["@weekId"].Value = int.Parse(ddlWeek.SelectedValue);
-                            if (tasksNumber == 1)
-                            {
-                                comm.Parameters["@task"].Value = task1.Text;
-                            }
-                            else if (tasksNumber == 2)
-                            {
-                                comm.Parameters["@task"].Value = task2.Text;
-                            }
-                            else if (tasksNumber == 3)
-                            {
-                                comm.Parameters["@task"].Value = task3.Text;
-                            }
-                            else if (tasksNumber == 4)
-                            {
-                                comm.Parameters["@task"].Value = task4.Text;
-                            }
-
-                            comm.ExecuteNonQuery();
-                        }
-                        tasksNumber--;
-                    }
-                }
-                con.Close();
-            }
+            Dictionary<string, object> myPara = new Dictionary<string, object>();
+                myPara.Add("@userName", Session["Username"]);
+                myPara.Add("@weekId", int.Parse(ddlWeek.SelectedIndex.ToString()));
+                myPara.Add("@task1", task1.Text.Trim());
+                myPara.Add("@task2", task2.Text.Trim());
+                myPara.Add("@task3", task3.Text.Trim());
+                myPara.Add("@task4", task4.Text.Trim());
+                
+                myCrud.InsertUpdateDelete(mySql, myPara);
+                btnSubmit.Text = "Update";
 
         }
-        //***************************************************************
-        protected int getTasksNumber()
-        {
-            int tasksNumber = 0;
-            if (!string.IsNullOrEmpty(task1.Text.Trim()))
-            {
-                tasksNumber++;
-            }
-            if (!string.IsNullOrEmpty(task2.Text.Trim()))
-            {
-                tasksNumber++;
-            }
-            if (!string.IsNullOrEmpty(task3.Text.Trim()))
-            {
-                tasksNumber++;
-            }
-            if (!string.IsNullOrEmpty(task4.Text.Trim()))
-            {
-                tasksNumber++;
-            }
-
-            return tasksNumber;
-        }
+    
         //***************************************************************
         protected void updateTrainee()
             {
@@ -304,10 +284,99 @@ namespace KSU_Templates.Templates
             return isEmpty;
         }
 
+        protected void ddlWeek_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+            //Retrive tasks based on week number
+            if (ddlWeek.SelectedIndex != 0)
+            {
+                CRUD myCrud = new CRUD();
+                string mySql = @"select task1, task2, task3, task4 from followup where userName = @username and weekId = @weekId";
+                Dictionary<string, object> myPara = new Dictionary<string, object>();
+                myPara.Add("@username", Session["Username"]);
+                myPara.Add("@weekId", ddlWeek.SelectedIndex);
+                SqlDataReader dr = myCrud.getDrPassSql(mySql, myPara);
+                if (dr.HasRows)
+                {
+
+                    while (dr.Read())
+                    {
+                        task1.Text = dr["task1"].ToString();
+                        task2.Text = dr["task2"].ToString();
+                        task3.Text = dr["task3"].ToString();
+                        task4.Text = dr["task4"].ToString();
+
+                    }
+                    btnSubmit.Text = "Update";
+                }
+                else
+                {
+                    emptyTasks();
+                    btnSubmit.Text = "Submit";
+                }
+            }
+            else
+            {
+                emptyTasks();
+                btnSubmit.Text = "Submit";
+            }
+
+            displayFollowUpInformation();
+
+        }
+
 
 
         //***************************************************************
-     
+        protected void emptyTasks()
+        {
+            task1.Text = string.Empty;
+            task2.Text = string.Empty;
+            task3.Text = string.Empty;
+            task4.Text = string.Empty;
+        }
+
+        //***************************************************************
+
+        protected void displayFollowUpInformation()
+        {
+
+            string sqlCmd = "select * from followup where userName ='" + Session["Username"]+"'";
+
+            string conString = CRUD.conStr;//..CRUD.DB_CONN_ST; //WebConfigurationManager.ConnectionStrings["conStrInternship"].ConnectionString;//WebConfigurationManager.ConnectionStrings["FtreeConStrlocal"].ConnectionString;
+            SqlDataAdapter dad = new SqlDataAdapter(sqlCmd, conString);
+            DataTable dtUserRoles = new DataTable();
+            dad.Fill(dtUserRoles);
+            gvUsers.DataSource = dtUserRoles;
+            gvUsers.DataBind();
+        }
+        //***************************************************************
+        protected void deleteWeek(Object sender, GridViewDeleteEventArgs e)
+        {
+
+
+            String week = gvUsers.Rows[e.RowIndex].Cells[0].Text.ToString();
+            CRUD myCrud = new CRUD();
+            string sqlCmd = "delete from followup where userName = '" + Session["Username"] + "' and weekId =" + week;
+            myCrud.InsertUpdateDelete(sqlCmd);
+
+            displayFollowUpInformation();
+            checkEmptyGrideViews();
+
+
+        }
+
+        protected void checkEmptyGrideViews()
+        {
+
+            if (gvUsers.Rows.Count == 0)
+            {
+
+                emptyGrideViews.Visible = true;
+            }
+
+
+        }
 
     }
 }
