@@ -33,22 +33,22 @@
         <link rel="stylesheet" href="/Form_styles/css/style.css" />
 
         <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
-          function ImagePreview(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                     $('#<%=oldSignature.ClientID%>').hide();
+        <script type="text/javascript">
+            function ImagePreview(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#<%=oldSignature.ClientID%>').hide();
                     $('#<%=newSignature.ClientID%>').show();
                     $('#<%=newSignature.ClientID%>').prop('src', e.target.result)
-                        .width(200)
-                        .height(200);
-                };
-                reader.readAsDataURL(input.files[0]);
+                            .width(200)
+                            .height(200);
+                    };
+                    reader.readAsDataURL(input.files[0]);
                 }
             }
 
-    </script>
+        </script>
 
     </head>
 
@@ -73,7 +73,7 @@
     <!-- Follow up Temaplate Section-->
     <section class="page-section" style="background-color: rgba(44, 62, 80,0.1);" id="follow-up">
 
-        <!-- Contact Section Heading-->
+        <!-- Followup Section Heading-->
         <h2 class="page-section-heading text-center text-uppercase text-secondary">Follow up Form</h2>
         <!-- Icon Divider-->
         <div class="divider-custom">
@@ -89,7 +89,6 @@
                 <div class="wizard-form">
                     <div class="form-register">
                         <div id="form-total">
-                            <!-- SECTION 1 -->
                             <h2></h2>
                             <section>
                                 <div class="inner">
@@ -100,22 +99,22 @@
                                     <div class="form-row">
                                         <div class="form-holder">
                                             <fieldset>
-                                                <legend>Name<asp:Label ID="nameError" runat="server" Text="  *" style="color:red; font-size:16px" Visible="false"></asp:Label></legend>
+                                                <legend>Name<asp:Label ID="nameError" runat="server" Text="  *" Style="color: red; font-size: 16px" Visible="false"></asp:Label></legend>
                                                 <asp:TextBox class="form-control" ID="txtName" placeholder="Name" runat="server"></asp:TextBox>
                                             </fieldset>
                                         </div>
                                         <div class="form-holder">
                                             <fieldset>
-                                                <legend>ID<asp:Label ID="idError" runat="server" Text="  *" style="color:red; font-size:16px" Visible="false"></asp:Label></legend>
+                                                <legend>ID<asp:Label ID="idError" runat="server" Text="  *" Style="color: red; font-size: 16px" Visible="false"></asp:Label></legend>
                                                 <asp:TextBox class="form-control" ID="txtId" placeholder="ID" runat="server"></asp:TextBox>
                                             </fieldset>
                                         </div>
                                     </div>
-                                      <div class="form-row">
+                                    <div class="form-row">
                                         <div class="form-holder form-holder-2">
                                             <fieldset>
-                                                <legend>Institution<asp:Label ID="institutionError" runat="server" Text="  *" style="color:red; font-size:16px" Visible="false"></asp:Label></legend>
-                                                <input type="text" name="institution" id="txtInstitution" class="form-control" placeholder="Institution" readonly runat="server" style="background-color:white">
+                                                <legend>Institution<asp:Label ID="institutionError" runat="server" Text="  *" Style="color: red; font-size: 16px" Visible="false"></asp:Label></legend>
+                                                <input type="text" name="institution" id="txtInstitution" class="form-control" placeholder="Institution" readonly runat="server" style="background-color: white">
                                             </fieldset>
                                         </div>
                                     </div>
@@ -132,7 +131,7 @@
                                     </div>
 
                                     <%--Assigned Task--%>
-                                    <div class="wizard-header">
+                                    <div class="wizard-header" id="assignedTask">
                                         <h3 class="heading">Assigned Task</h3>
                                         <p>Filled by trainee and signed by supervisor </p>
                                     </div>
@@ -140,17 +139,19 @@
                                     <%--Week Number--%>
                                     <div class="form-row form-row-date">
                                         <div class="form-holder form-holder-2">
-                                            <label class="special-label">Week:  <asp:Label ID="weekError" runat="server" Text=" *" style="color:red; font-size:16px" Visible="false"></asp:Label></label>
-                                            <asp:DropDownList CssClass="form-control" name="week" ID="ddlWeek" runat="server">
+                                            <label class="special-label">Week: 
+                                                <asp:Label ID="weekError" runat="server" Text=" *" Style="color: red; font-size: 16px" Visible="false"></asp:Label></label>
+                                            <asp:DropDownList CssClass="form-control" name="week" ID="ddlWeek" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged">
                                             </asp:DropDownList>
 
                                         </div>
                                     </div>
-                    
+
 
                                     <div class="form-row">
                                         <div class="form-holder form-holder-2">
-                                            <label class="special-label">Task1: <asp:Label ID="task1Error" runat="server" Text=" *" style="color:red; font-size:16px" Visible="false"></asp:Label></label>
+                                            <label class="special-label">Task1:
+                                                <asp:Label ID="task1Error" runat="server" Text=" *" Style="color: red; font-size: 16px" Visible="false"></asp:Label></label>
 
                                             <asp:TextBox ID="task1" TextMode="MultiLine" class="form-control" placeholder="Write your task1 here..." runat="server"></asp:TextBox>
 
@@ -196,13 +197,13 @@
                                         <p>Please upload your Signature </p>
 
                                         <br />
-                                        <asp:FileUpload id="FileUpload1" runat="server" onchange="ImagePreview(this);" BackColor="#2c3e50" ForeColor="White" BorderColor="#2c3e50e" />
+                                        <asp:FileUpload ID="FileUpload1" runat="server" onchange="ImagePreview(this);" BackColor="#2c3e50" ForeColor="White" BorderColor="#2c3e50e" />
                                     </div>
 
-                                  <div class="wizard-header" id="imageDiv">
-                                      <asp:Image ID="oldSignature" Visible="false" runat="server" Height="200" Width="200" />
-                                    <asp:Image ID="newSignature" style="display:none"  runat="server" Height="120px" Width="117px" />
-                                        </div>
+                                    <div class="wizard-header" id="imageDiv">
+                                        <asp:Image ID="oldSignature" Visible="false" runat="server" Height="200" Width="200" />
+                                        <asp:Image ID="newSignature" Style="display: none" runat="server" Height="120px" Width="117px" />
+                                    </div>
 
                                     <%--Submit button--%>
                                     <div class="form-row">
@@ -221,11 +222,124 @@
                 </div>
             </div>
         </div>
-    </section>
+        <br />
+        <br />
+        <br />
 
-    <script src="/Form_styles/js/jquery-3.3.1.min.js"></script>
-    <script src="/Form_styles/js/jquery.steps.js"></script>
-    <script src="/Form_styles/js/main.js"></script>
+        <%--Followup information section--%>
+        <section class="section">
+            <div class="wizard-header">
+                <h4 class="page-section-heading text-center text-uppercase text-secondary">View Follow-up information</h4>
+                <p>You can delete any week and resubmit the tasks again</p>
+            </div>
+            <br />
+            <br />
+
+            <asp:GridView Class="myGridView" Caption="" CaptionAlign="Top" Width="100%" ID="gvUsers" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="false" OnRowDeleting="deleteWeek">
+                <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+                <HeaderStyle Font-Bold="True" ForeColor="black" />
+                <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+                <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F7F7F7" />
+                <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+                <SortedDescendingCellStyle BackColor="#E5E5E5" />
+                <SortedDescendingHeaderStyle BackColor="#242121" />
+                <Columns>
+
+                    <asp:BoundField DataField="weekId" HeaderText="Week" />
+                    <asp:BoundField DataField="task1" HeaderText="Task 1" />
+                    <asp:BoundField DataField="task2" HeaderText="Task 2" />
+                    <asp:BoundField DataField="task3" HeaderText="Task 3" />
+                    <asp:BoundField DataField="task4" HeaderText="Task 4" />
 
 
+                    <asp:ButtonField runat="server" CausesValidation="false" HeaderText="Delete"
+                        CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image" ItemStyle-VerticalAlign="Middle" ItemStyle-CssClass="buttonStyle" />
+                </Columns>
+            </asp:GridView>
+
+            <asp:Label ID="emptyGrideViews" runat="server" Text="You do not have any attendance yet" Style="color: dimgrey; font-size: 16px" Visible="false"></asp:Label>
+
+            <br />
+            <br />
+
+        </section></section>
+
+
+        <script src="/Form_styles/js/jquery-3.3.1.min.js"></script>
+        <script src="/Form_styles/js/jquery.steps.js"></script>
+        <script src="/Form_styles/js/main.js"></script>
+
+
+        <style>
+            .section {
+                margin-left: 50px;
+                margin-right: 50px;
+                background-color: white;
+                text-align: center;
+                border-radius: 25px;
+                padding: 40px;
+                box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+                -o-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+                -ms-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+                -moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+                -webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+            }
+
+            @media screen and (max-width: 700px) {
+                .section {
+                    margin: 0px 0;
+                }
+            }
+
+            @media screen and (max-width: 750px) {
+                table.myGridView th, td {
+                    font-size: 13px;
+                    padding: 0px;
+                    width: 5px;
+                }
+            }
+
+            @media screen and (max-width: 750px) {
+                table {
+                    border-spacing: 0 0px;
+                }
+            }
+
+
+
+            table {
+                border-collapse: separate;
+                border-spacing: 0 15px;
+            }
+
+            td {
+                width: 50px;
+                text-align: center;
+                border-bottom: 1px solid #D2D2D7;
+                padding: 10px;
+                vertical-align: central;
+            }
+
+            table caption {
+                text-align: center;
+            }
+
+            table.myGridView th {
+                padding: 20px
+            }
+
+            .buttonStyle {
+                padding-top: 15px;
+            }
+        </style>
+        <script type="text/javascript">
+            function ConfirmBox() {
+                if (confirm("Are you sure you want to delete this?")) {
+                    alert("Yes");
+                } else {
+                    alert("No");
+                }
+            }
+        </script>
 </asp:Content>
