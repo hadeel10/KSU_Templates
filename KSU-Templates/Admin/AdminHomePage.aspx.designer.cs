@@ -7,9 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace KSU_Templates.Admin {
-    
-    
-    public partial class adminHomePage {
+namespace KSU_Templates.Admin
+{
+
+
+    public partial class AdminHomePage
+    {
     }
 }

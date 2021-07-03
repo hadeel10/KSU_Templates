@@ -7,11 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace KSU_Templates.Admin
 {
-	public partial class adminHomePage : System.Web.UI.Page
-	{
-		protected void Page_Load(object sender, EventArgs e)
-		{
+    public partial class AdminHomePage : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
 
-		}
-	}
+        }
+    }
 }
