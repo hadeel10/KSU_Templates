@@ -131,7 +131,7 @@ namespace KSU_Templates.Student.Templates
             if (Session["Username"] != null)
             {
                 CRUD myCrud = new CRUD();
-                string mySql = @"select trainee, triningStartingDate, id, institutionId from trainee where userName = @userN ";
+                string mySql = @"select trainee, triningStartingDate, id, institutionId, traineeSignature from trainee where userName = @userN ";
                 Dictionary<string, object> myPara = new Dictionary<string, object>();
                 myPara.Add("@userN", Session["Username"]);
                 SqlDataReader dr = myCrud.getDrPassSql(mySql, myPara);
@@ -149,6 +149,16 @@ namespace KSU_Templates.Student.Templates
                         if(!string.IsNullOrEmpty(startingD)) { 
                         DateTime d = DateTime.Parse(startingD);
                         startingDate.Text = d.ToString("yyyy-MM-dd");}
+                        // Retrive and display traineeSignature
+                        if (!Convert.IsDBNull(dr["traineeSignature"]))
+                        {
+                            byte[] imageData = (byte[])dr["traineeSignature"];
+                            string img = Convert.ToBase64String(imageData, 0, imageData.Length);
+                            oldSignature.ImageUrl = "data:image/png;base64," + img;
+                            oldSignature.Visible = true;
+
+
+                        }
                     }
                 }
             }
@@ -324,6 +334,8 @@ namespace KSU_Templates.Student.Templates
                 myCrud.InsertUpdateDelete(mySql, myPara);
             
         }
+        //***************************************************************
+
         protected bool checkAttendance(String week , String day) /// check if attendance exist or not (to prevent the user from add duplicate attendance)
         {
             bool exist = false;
@@ -345,7 +357,9 @@ namespace KSU_Templates.Student.Templates
 
             return exist;
         }
-            protected void updateTrainee()
+        //***************************************************************
+
+        protected void updateTrainee()
         {
 
             CRUD myCrud = new CRUD();
@@ -357,9 +371,31 @@ namespace KSU_Templates.Student.Templates
             myPara.Add("@id", idd.Text.ToString());
             myPara.Add("@strDate", startingDate.Text.ToString());
             myPara.Add("@userName", Session["Username"]);
+
+
+            // Upload traineeSignature
+            if (FileUpload1.HasFile)
+            {
+                mySql = @"UPDATE trainee
+                     SET trainee = @trainee, id = @id, triningStartingDate = @strDate, traineeSignature = @traineeSignature
+                        WHERE userName = @userName ";
+                myPara.Add("@traineeSignature", FileUpload1.FileBytes);
+            }
+            else
+            {
+                mySql = @"UPDATE trainee
+                     SET trainee = @trainee, id = @id, triningStartingDate = @strDate
+                        WHERE userName = @userName ";
+            }
+
+
+
+
             myCrud.InsertUpdateDelete(mySql, myPara);
 
         }
+        //***************************************************************
+
         protected void deleteW1(Object sender, GridViewDeleteEventArgs e) {
 
 
@@ -374,6 +410,8 @@ namespace KSU_Templates.Student.Templates
 
 
         }
+        //***************************************************************
+
         protected void deleteW2(Object sender, GridViewDeleteEventArgs e)
         {
 
@@ -389,6 +427,8 @@ namespace KSU_Templates.Student.Templates
 
 
         }
+        //***************************************************************
+
         protected void deleteW3(Object sender, GridViewDeleteEventArgs e)
         {
 
@@ -404,6 +444,8 @@ namespace KSU_Templates.Student.Templates
 
 
         }
+        //***************************************************************
+
         protected void deleteW4(Object sender, GridViewDeleteEventArgs e)
         {
 
@@ -419,6 +461,8 @@ namespace KSU_Templates.Student.Templates
 
 
         }
+        //***************************************************************
+
         protected void deleteW5(Object sender, GridViewDeleteEventArgs e)
         {
 
@@ -434,6 +478,8 @@ namespace KSU_Templates.Student.Templates
 
 
         }
+        //***************************************************************
+
         protected void deleteW6(Object sender, GridViewDeleteEventArgs e)
         {
 
@@ -449,6 +495,8 @@ namespace KSU_Templates.Student.Templates
 
 
         }
+        //***************************************************************
+
         protected void deleteW7(Object sender, GridViewDeleteEventArgs e)
         {
 
@@ -464,6 +512,8 @@ namespace KSU_Templates.Student.Templates
 
 
         }
+        //***************************************************************
+
         protected void deleteW8(Object sender, GridViewDeleteEventArgs e)
         {
 
@@ -479,6 +529,8 @@ namespace KSU_Templates.Student.Templates
 
 
         }
+        //***************************************************************
+
         protected int getDayId(String day)
         {
             if (day.Trim().Equals("Sunday")) { return 1; }
@@ -488,6 +540,7 @@ namespace KSU_Templates.Student.Templates
             if (day.Trim().Equals("Thursday")) { return 5; } else { return 0; }
 
         }
+        //***************************************************************
 
         protected void checkEmptyGrideViews() {
 

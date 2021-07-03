@@ -190,6 +190,8 @@
         
         <br /><br /><br />
 
+           <!-- add trainee, export word, pdf, xcl buttons -->
+
         <section class="section">
                                      <div class="wizard-header">
                                         <h4 class="page-section-heading text-center text-uppercase text-secondary">View information</h4>
@@ -210,6 +212,7 @@
                                          </div>
 
 
+               <!-- Trainees gride view -->
 
             <div style="align-content:center">
              <asp:GridView ID="gvDepartments" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True"
@@ -233,25 +236,21 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="traineeMobile">
                                 <ItemTemplate>
-                                   <%-- <asp:Label ID="lblActive" runat="server" Text='<%#Eval("IsActive") %>'></asp:Label>--%>
                                     <asp:Label ID="traineeMobile" runat="server" Text='<%#Eval("traineeMobile") %>' Enabled="false"  />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="traineeEmail">
                                 <ItemTemplate>
-                                   <%-- <asp:Label ID="lblActive" runat="server" Text='<%#Eval("IsActive") %>'></asp:Label>--%>
                                     <asp:Label ID="traineeEmail" runat="server" Text='<%#Eval("traineeEmail") %>' Enabled="false"  />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="universitySupervisor">
                                 <ItemTemplate>
-                                   <%-- <asp:Label ID="lblActive" runat="server" Text='<%#Eval("IsActive") %>'></asp:Label>--%>
                                     <asp:Label ID="universitySupervisor" runat="server" Text='<%#Eval("universitySupervisor") %>' Enabled="false"  />
                                 </ItemTemplate>
                             </asp:TemplateField>
                              <asp:TemplateField HeaderText="universitySupervisorEmail">
                                 <ItemTemplate>
-                                   <%-- <asp:Label ID="lblActive" runat="server" Text='<%#Eval("IsActive") %>'></asp:Label>--%>
                                     <asp:Label ID="universitySupervisorEmail" runat="server" Text='<%#Eval("universitySupervisorEmail") %>' Enabled="false"  />
                                 </ItemTemplate>
                             </asp:TemplateField>
@@ -275,6 +274,8 @@
     <script src="/Form_styles/js/jquery-3.3.1.min.js"></script>
     <script src="/Form_styles/js/jquery.steps.js"></script>
     <script src="/Form_styles/js/main.js"></script>
+
+       <!-- style -->
     <style>
         .hidden {
   display: none;
@@ -390,6 +391,7 @@ table.myGridView th
 }
 
     </style>
+       <!-- script -->
    <script type="text/javascript">
     function removeClass() {
          $('#<%= editDiv.ClientID %>').removeClass('hidden');
