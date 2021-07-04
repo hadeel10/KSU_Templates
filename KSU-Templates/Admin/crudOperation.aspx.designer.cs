@@ -7,10 +7,82 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace KSU_Templates.Templates {
+namespace KSU_Templates.Admin {
     
     
-    public partial class FollowUp {
+    public partial class WebForm1 {
+        
+        /// <summary>
+        /// editDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl editDiv;
+        
+        /// <summary>
+        /// userNameDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl userNameDiv;
+        
+        /// <summary>
+        /// userNameAddError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label userNameAddError;
+        
+        /// <summary>
+        /// userNameAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox userNameAdd;
+        
+        /// <summary>
+        /// passwordDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl passwordDiv;
+        
+        /// <summary>
+        /// passwordError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label passwordError;
+        
+        /// <summary>
+        /// password control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox password;
+        
+        /// <summary>
+        /// userName2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label userName2;
         
         /// <summary>
         /// nameError control.
@@ -22,13 +94,13 @@ namespace KSU_Templates.Templates {
         protected global::System.Web.UI.WebControls.Label nameError;
         
         /// <summary>
-        /// txtName control.
+        /// name control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtName;
+        protected global::System.Web.UI.WebControls.TextBox name;
         
         /// <summary>
         /// idError control.
@@ -40,165 +112,156 @@ namespace KSU_Templates.Templates {
         protected global::System.Web.UI.WebControls.Label idError;
         
         /// <summary>
-        /// txtId control.
+        /// idd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtId;
+        protected global::System.Web.UI.WebControls.TextBox idd;
         
         /// <summary>
-        /// institutionError control.
+        /// ddlMajor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label institutionError;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMajor;
         
         /// <summary>
-        /// txtInstitution control.
+        /// traineeEmailError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtInstitution;
+        protected global::System.Web.UI.WebControls.Label traineeEmailError;
         
         /// <summary>
-        /// startDateError control.
+        /// traineeEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label startDateError;
+        protected global::System.Web.UI.WebControls.TextBox traineeEmail;
         
         /// <summary>
-        /// startingDate control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox startingDate;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// weekError control.
+        /// mobile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label weekError;
+        protected global::System.Web.UI.WebControls.TextBox mobile;
         
         /// <summary>
-        /// ddlWeek control.
+        /// supervisorNameError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlWeek;
+        protected global::System.Web.UI.WebControls.Label supervisorNameError;
         
         /// <summary>
-        /// task1Error control.
+        /// supervisorName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label task1Error;
+        protected global::System.Web.UI.WebControls.TextBox supervisorName;
         
         /// <summary>
-        /// task1 control.
+        /// supervisorEmailError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox task1;
+        protected global::System.Web.UI.WebControls.Label supervisorEmailError;
         
         /// <summary>
-        /// task2 control.
+        /// supervisorEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox task2;
+        protected global::System.Web.UI.WebControls.TextBox supervisorEmail;
         
         /// <summary>
-        /// task3 control.
+        /// btnUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox task3;
+        protected global::System.Web.UI.WebControls.Button btnUpdate;
         
         /// <summary>
-        /// task4 control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox task4;
+        protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// FileUpload1 control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+        protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// oldSignature control.
+        /// Button2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image oldSignature;
+        protected global::System.Web.UI.WebControls.Button Button2;
         
         /// <summary>
-        /// newSignature control.
+        /// Button3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image newSignature;
+        protected global::System.Web.UI.WebControls.Button Button3;
         
         /// <summary>
-        /// btnSubmit control.
+        /// Button4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected global::System.Web.UI.WebControls.Button Button4;
         
         /// <summary>
-        /// gvUsers control.
+        /// gvDepartments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvUsers;
-        
-        /// <summary>
-        /// emptyGrideViews control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label emptyGrideViews;
+        protected global::System.Web.UI.WebControls.GridView gvDepartments;
     }
 }

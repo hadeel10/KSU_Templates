@@ -31,6 +31,25 @@
         <link rel="stylesheet" type="text/css" href="/Form_styles/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
         <!-- Main Style Css -->
         <link rel="stylesheet" href="/Form_styles/css/style.css" />
+
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            function ImagePreview(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#<%=oldSignature.ClientID%>').hide();
+                    $('#<%=newSignature.ClientID%>').show();
+                    $('#<%=newSignature.ClientID%>').prop('src', e.target.result)
+                            .width(200)
+                            .height(200);
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+        </script>
+
     </head>
 
 
@@ -54,13 +73,14 @@
     <!-- Follow up Temaplate Section-->
     <section class="page-section" style="background-color: rgba(44, 62, 80,0.1);" id="follow-up">
 
-        <!-- Contact Section Heading-->
+        <!-- Followup Section Heading-->
         <h2 class="page-section-heading text-center text-uppercase text-secondary">Follow up Form</h2>
         <!-- Icon Divider-->
         <div class="divider-custom">
             <div class="divider-custom-line"></div>
             <div class="divider-custom-icon">
-                <i class="fas fa-star"></i></div>
+                <i class="fas fa-star"></i>
+            </div>
             <div class="divider-custom-line"></div>
         </div>
 
@@ -69,7 +89,6 @@
                 <div class="wizard-form">
                     <div class="form-register">
                         <div id="form-total">
-                            <!-- SECTION 1 -->
                             <h2></h2>
                             <section>
                                 <div class="inner">
@@ -80,125 +99,118 @@
                                     <div class="form-row">
                                         <div class="form-holder">
                                             <fieldset>
-                                                <legend>Name</legend>
-                                                <input type="text" class="form-control" id="txtName" name="name" placeholder="Name" runat="server">
+                                                <legend>Name<asp:Label ID="nameError" runat="server" Text="  *" Style="color: red; font-size: 16px" Visible="false"></asp:Label></legend>
+                                                <asp:TextBox class="form-control" ID="txtName" placeholder="Name" runat="server"></asp:TextBox>
                                             </fieldset>
                                         </div>
                                         <div class="form-holder">
                                             <fieldset>
-                                                <legend>ID</legend>
-                                                <input type="text" class="form-control" id="id" name="id" placeholder="ID" runat="server">
+                                                <legend>ID<asp:Label ID="idError" runat="server" Text="  *" Style="color: red; font-size: 16px" Visible="false"></asp:Label></legend>
+                                                <asp:TextBox class="form-control" ID="txtId" placeholder="ID" runat="server"></asp:TextBox>
                                             </fieldset>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-holder form-holder-2">
                                             <fieldset>
-                                                <legend>Institution</legend>
-                                                <input type="text" name="institution" id="institution" class="form-control" placeholder="Institution" runat="server">
+                                                <legend>Institution<asp:Label ID="institutionError" runat="server" Text="  *" Style="color: red; font-size: 16px" Visible="false"></asp:Label></legend>
+                                                <input type="text" name="institution" id="txtInstitution" class="form-control" placeholder="Institution" readonly runat="server" style="background-color: white">
                                             </fieldset>
                                         </div>
                                     </div>
-                               
+
+                                    <%--Starting date--%>
                                     <div class="form-row form-row-date">
                                         <div class="form-holder form-holder-2">
-                                            <label class="special-label">Starting Date:</label>
-                                                <select name="year" id="year">
-                                                <option value="YYYY" disabled selected>YYYY</option>
-                                                <option value="2025">2025</option>
-                                                <option value="2024">2024</option>
-                                                <option value="2023">2023</option>
-                                                <option value="2022">2022</option>
-                                                <option value="2021">2021</option>
-                                            </select>
-                                            <select name="month" id="month">
-                                                <option value="MM" disabled selected>MM</option>
-                                                <option value="Feb">Jan</option>
-                                                <option value="Feb">Feb</option>
-                                                <option value="Mar">Mar</option>
-                                                <option value="Apr">Apr</option>
-                                                <option value="May">May</option>
-                                                 <option value="Jun">Jun</option>
-                                                 <option value="Jul">Jul</option>
-                                                 <option value="Aug">Aug</option>
-                                                 <option value="Sep">Sep</option>
-                                                 <option value="Oct">Oct</option>
-                                                 <option value="Nov">Nov</option>
-                                                 <option value="Dec">Dec</option>
-                                               
-
-                                            </select>
-                                            <select name="date" id="date">
-                                                <option value="DD" disabled selected>DD</option>
-                                                 <option value="9">9</option>
-                                                 <option value="10">10</option>
-                                                 <option value="11">11</option>
-                                                 <option value="12">12</option>
-                                                 <option value="13">13</option>
-                                                 <option value="14">14</option>
-                                                <option value="15">15</option>
-                                                 <option value="16">16</option>
-                                                <option value="17">17</option>
-                                                <option value="18">18</option>
-                                                <option value="19">19</option>
-                                            </select>
-                         
+                                            <fieldset>
+                                                <legend>Starting Date
+                                                    <asp:Label ID="startDateError" runat="server" Text="  *" Style="color: red; font-size: 16px" Visible="false"></asp:Label></legend>
+                                                <asp:TextBox class="input100" TextMode="Date" type="text" name="startingDate" ID="startingDate" runat="server"></asp:TextBox>
+                                            </fieldset>
                                         </div>
                                     </div>
 
-
-                                    <div class="wizard-header">
+                                    <%--Assigned Task--%>
+                                    <div class="wizard-header" id="assignedTask">
                                         <h3 class="heading">Assigned Task</h3>
                                         <p>Filled by trainee and signed by supervisor </p>
                                     </div>
 
-
-                                    <div class="form-row">
+                                    <%--Week Number--%>
+                                    <div class="form-row form-row-date">
                                         <div class="form-holder form-holder-2">
-                                            <label class="special-label">Task1:</label>
-
-                                            <textarea name="task1" id="task1" class="form-control" placeholder="Write your task1 here..." runat="server" ></textarea>
+                                            <label class="special-label">Week: 
+                                                <asp:Label ID="weekError" runat="server" Text=" *" Style="color: red; font-size: 16px" Visible="false"></asp:Label></label>
+                                            <asp:DropDownList CssClass="form-control" name="week" ID="ddlWeek" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged">
+                                            </asp:DropDownList>
 
                                         </div>
                                     </div>
 
-                                    
+
+                                    <div class="form-row">
+                                        <div class="form-holder form-holder-2">
+                                            <label class="special-label">Task1:
+                                                <asp:Label ID="task1Error" runat="server" Text=" *" Style="color: red; font-size: 16px" Visible="false"></asp:Label></label>
+
+                                            <asp:TextBox ID="task1" TextMode="MultiLine" class="form-control" placeholder="Write your task1 here..." runat="server"></asp:TextBox>
+
+                                        </div>
+                                    </div>
+
+
                                     <div class="form-row">
                                         <div class="form-holder form-holder-2">
                                             <label class="special-label">Task2:</label>
 
-                                            <textarea name="task2" id="task2" class="form-control" placeholder="Write your task2 here..." runat="server" ></textarea>
+                                            <asp:TextBox ID="task2" TextMode="MultiLine" class="form-control" placeholder="Write your task2 here..." runat="server"></asp:TextBox>
 
                                         </div>
                                     </div>
 
 
-                                    
+
                                     <div class="form-row">
                                         <div class="form-holder form-holder-2">
                                             <label class="special-label">Task3:</label>
 
-                                            <textarea name="task3" id="task3" class="form-control" placeholder="Write your task3 here..." runat="server" ></textarea>
+                                            <asp:TextBox ID="task3" TextMode="MultiLine" class="form-control" placeholder="Write your task3 here..." runat="server"></asp:TextBox>
 
                                         </div>
                                     </div>
 
 
-                                    
+
                                     <div class="form-row">
                                         <div class="form-holder form-holder-2">
-                                            <label class="special-label">Tas4:</label>
+                                            <label class="special-label">Task4:</label>
 
-                                            <textarea name="task4" id="task4" class="form-control" placeholder="Write your task4 here..." runat="server" ></textarea>
+                                            <asp:TextBox ID="task4" TextMode="MultiLine" class="form-control" placeholder="Write your task4 here..." runat="server"></asp:TextBox>
 
                                         </div>
                                     </div>
 
-                                    <div class="form-row">
-                                    <div class="container-login100-form-btn m-t-32">
-                                        <asp:Button class="login100-form-btn" Text="Submit" runat="server" ID="btnSubmit" OnClick="btnSubmit_Click"></asp:Button>
+
+                                    <%--Signature upload--%>
+                                    <div class="wizard-header">
+                                        <h3 class="heading">Signature upload</h3>
+                                        <p>Please upload your Signature </p>
+
+                                        <br />
+                                        <asp:FileUpload ID="FileUpload1" runat="server" onchange="ImagePreview(this);" BackColor="#2c3e50" ForeColor="White" BorderColor="#2c3e50e" />
                                     </div>
-                                         </div>
+
+                                    <div class="wizard-header" id="imageDiv">
+                                        <asp:Image ID="oldSignature" Visible="false" runat="server" Height="200" Width="200" />
+                                        <asp:Image ID="newSignature" Style="display: none" runat="server" Height="120px" Width="117px" />
+                                    </div>
+
+                                    <%--Submit button--%>
+                                    <div class="form-row">
+                                        <div class="container-login100-form-btn m-t-32">
+                                            <asp:Button class="login100-form-btn" Text="Submit" runat="server" ID="btnSubmit" OnClick="btnSubmit_Click"></asp:Button>
+                                        </div>
+                                    </div>
                                     <br />
                                     <br />
                                 </div>
@@ -210,122 +222,124 @@
                 </div>
             </div>
         </div>
-    </section>
+        <br />
+        <br />
+        <br />
 
-    <script src="/Form_styles/js/jquery-3.3.1.min.js"></script>
-    <script src="/Form_styles/js/jquery.steps.js"></script>
-    <script src="/Form_styles/js/main.js"></script>
-    <%-- <h2 class="page-section-heading text-center mb-0" style="color:#467bc7;">Trainee's information</h2>
-    <br />
-    <br />
-    <br />
-    <table style="margin-left: auto; margin-right: auto;">
-        <tr>
-            <td>
-                <!-- Name input-->
-                <div class="form-floating mb-3">
-                    <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                    <label for="name">Name</label>
-                    <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                </div>
-            </td>
-            <td style="padding: 0 100px;"></td>
-            <td>
-                <!-- ID input-->
-                <div class="form-floating mb-3">
-                    <input class="form-control" id="id" type="text" placeholder="Enter your ID..." data-sb-validations="required" />
-                    <label for="name">ID</label>
-                    <div class="invalid-feedback" data-sb-feedback="name:required">An ID is required.</div>
-                </div>
-            </td>
-        </tr>
-          <tr>
-            <td>
-                <!-- Institution input-->
-                <div class="form-floating mb-3">
-                    <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                    <label for="name">Name</label>
-                    <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                </div>
-            </td>
-            <td style="padding: 0 100px;"></td>
-            <td>
-                <!-- Startin Date input-->
-                <div class="form-floating mb-3">
-                    <input class="form-control" id="id" type="text" placeholder="Enter your ID..." data-sb-validations="required" />
-                    <label for="name">ID</label>
-                    <div class="invalid-feedback" data-sb-feedback="name:required">An ID is required.</div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                	<div class="wrap-input100 validate-input" data-validate = "Enter Name" id="userError" runat="server">
-						<asp:TextBox class="input100" type="text" name="username" placeholder="name" id="uName" runat="server"></asp:TextBox>
-						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+        <%--Followup information section--%>
+        <section class="section">
+            <div class="wizard-header">
+                <h4 class="page-section-heading text-center text-uppercase text-secondary">View Follow-up information</h4>
+                <p>You can delete any week and resubmit the tasks again</p>
+            </div>
+            <br />
+            <br />
 
-					</div>
+            <asp:GridView Class="myGridView" Caption="" CaptionAlign="Top" Width="100%" ID="gvUsers" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="false" OnRowDeleting="deleteWeek">
+                <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+                <HeaderStyle Font-Bold="True" ForeColor="black" />
+                <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+                <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F7F7F7" />
+                <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+                <SortedDescendingCellStyle BackColor="#E5E5E5" />
+                <SortedDescendingHeaderStyle BackColor="#242121" />
+                <Columns>
 
-            </td>
-                        <td style="padding: 0 100px;"></td>
+                    <asp:BoundField DataField="weekId" HeaderText="Week" />
+                    <asp:BoundField DataField="task1" HeaderText="Task 1" />
+                    <asp:BoundField DataField="task2" HeaderText="Task 2" />
+                    <asp:BoundField DataField="task3" HeaderText="Task 3" />
+                    <asp:BoundField DataField="task4" HeaderText="Task 4" />
 
-              <td>
-                	<div class="wrap-input100 validate-input" data-validate = "Enter ID" id="Div1" runat="server">
-						<asp:TextBox class="input100" type="text" name="id" placeholder="ID" id="TextBox1" runat="server"></asp:TextBox>
-						<span class="focus-input100" data-placeholder="&#xe822;"></span>
 
-					</div>
+                    <asp:ButtonField runat="server" CausesValidation="false" HeaderText="Delete"
+                        CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image" ItemStyle-VerticalAlign="Middle" ItemStyle-CssClass="buttonStyle" />
+                </Columns>
+            </asp:GridView>
 
-            </td>
-        </tr>
-         <tr>
-            <td>
-                	<div class="wrap-input100 validate-input" data-validate = "Enter Institution Name" id="Div2" runat="server">
-						<asp:TextBox class="input100" type="text" name="institution" placeholder="institution" id="TextBox2" runat="server"></asp:TextBox>
-						<span class="focus-input100" data-placeholder="&#xe801;"></span>
+            <asp:Label ID="emptyGrideViews" runat="server" Text="You do not have any attendance yet" Style="color: dimgrey; font-size: 16px" Visible="false"></asp:Label>
 
-					</div>
+            <br />
+            <br />
 
-            </td>
-                        <td style="padding: 0 100px;"></td>
+        </section></section>
 
-              <td>
-                	<div class="wrap-input100 validate-input" data-validate = "Enter Starting Date" id="Div3" runat="server">
-						<asp:TextBox class="input100" type="text" name="startingDate" placeholder="Starting date" id="TextBox3" runat="server"></asp:TextBox>
-						<span class="focus-input100" data-placeholder="&#xe836;"></span>
 
-					</div>
+        <script src="/Form_styles/js/jquery-3.3.1.min.js"></script>
+        <script src="/Form_styles/js/jquery.steps.js"></script>
+        <script src="/Form_styles/js/main.js"></script>
 
-            </td>
-        </tr>
 
-    </table>
-     <br />
-    <br />
-     <h2 class="page-section-heading text-center mb-0" style="color:#467bc7;">Assigned Tasks</h2>
-     <br />
-    <br />
-     <br />
-   <table style="margin-left: auto; margin-right: auto;">
-       <tr>
-        <td>
-                	<div class="wrap-input100 validate-input" data-validate = "Task 1" id="Div4" runat="server">
-						<textarea class="input100" type="text" name="task1" placeholder="Task 1" id="TextBox4" runat="server"></textarea>
-						<span class="focus-input100" data-placeholder="&#xe802;"></span>
+        <style>
+            .section {
+                margin-left: 50px;
+                margin-right: 50px;
+                background-color: white;
+                text-align: center;
+                border-radius: 25px;
+                padding: 40px;
+                box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+                -o-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+                -ms-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+                -moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+                -webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+            }
 
-					</div>
+            @media screen and (max-width: 700px) {
+                .section {
+                    margin: 0px 0;
+                }
+            }
 
-            </td>
-                        <td style="padding: 0 100px;"></td>
-            <td>
-                	<div class="wrap-input100 validate-input" data-validate = "Task 2" id="Div5" runat="server">
-						<textarea class="input100" type="text" name="task2" placeholder="Task 2" id="Textarea1" runat="server"></textarea>
-						<span class="focus-input100" data-placeholder="&#xe802;"></span>
+            @media screen and (max-width: 750px) {
+                table.myGridView th, td {
+                    font-size: 13px;
+                    padding: 0px;
+                    width: 5px;
+                }
+            }
 
-					</div>
+            @media screen and (max-width: 750px) {
+                table {
+                    border-spacing: 0 0px;
+                }
+            }
 
-            </td>
-           </tr>
 
-   </table>--%>
+
+            table {
+                border-collapse: separate;
+                border-spacing: 0 15px;
+            }
+
+            td {
+                width: 50px;
+                text-align: center;
+                border-bottom: 1px solid #D2D2D7;
+                padding: 10px;
+                vertical-align: central;
+            }
+
+            table caption {
+                text-align: center;
+            }
+
+            table.myGridView th {
+                padding: 20px
+            }
+
+            .buttonStyle {
+                padding-top: 15px;
+            }
+        </style>
+        <script type="text/javascript">
+            function ConfirmBox() {
+                if (confirm("Are you sure you want to delete this?")) {
+                    alert("Yes");
+                } else {
+                    alert("No");
+                }
+            }
+        </script>
 </asp:Content>

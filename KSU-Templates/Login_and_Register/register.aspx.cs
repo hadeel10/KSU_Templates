@@ -61,7 +61,7 @@ namespace KSU_Templates.Login_and_Register
                         createTrainee(vUser, vEmail);
                         FormsAuthentication.RedirectFromLoginPage(userName.Text, false);
                         //  postMsg("User Created Successfuly");
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Acount Created Successfuly')", true);
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Acount Created Successfully')", true);
                         Response.Redirect("/Student/HomePage");
 
                     }
@@ -289,7 +289,7 @@ namespace KSU_Templates.Login_and_Register
         }
         void createTrainee(string user, string email) {
             CRUD myCrud = new CRUD();
-            string mySql = @"INSERT INTO trainee(userName, email, institutionId)
+            string mySql = @"INSERT INTO trainee(userName, traineeEmail, institutionId)
               VALUES (@userN, @userEmail, 1)";
             Dictionary<string, object> myPara = new Dictionary<string, object>();
             myPara.Add("@userN", user);
