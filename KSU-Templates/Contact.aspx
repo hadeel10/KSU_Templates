@@ -53,8 +53,8 @@
     </div>
        <section class="page-section" style="background-color: rgba(44, 62, 80,0.1);" id="follow-up">
 
-        <!-- Followup Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary">Contact us</h2>
+        <!-- Contact Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary">Contact</h2>
         <!-- Icon Divider-->
         <div class="divider-custom">
             <div class="divider-custom-line"></div>
@@ -73,40 +73,59 @@
                             <section>
                                 <div class="inner">
                                     <div class="wizard-header">
-                                        <h3 class="heading">Trainee's information</h3>
-                                        <p>Please enter your infomation.  </p>
+                                        <h3 class="heading">Contact Us</h3>
+                                        <p>If you have any questions, just fill in the contact form and we will answer you shortly. </p>
                                     </div>
+                                      <%--From field--%>
                                     <div class="form-row">
                                         <div class="form-holder form-holder-2">
                                             <fieldset>
-                                                <legend>Institution<asp:Label ID="institutionError" runat="server" Text="  *" Style="color: red; font-size: 16px" Visible="false"></asp:Label></legend>
-                                                <input type="text" name="institution" id="txtInstitution" class="form-control" placeholder="Institution" readonly runat="server" style="background-color: white">
+                                                <legend>From:<asp:Label ID="fromError" runat="server" Text="  *" Style="color: red; font-size: 16px" Visible="false"></asp:Label></legend>
+                                                <input type="text" name="from" id="txtFrom" class="form-control" placeholder="Example@gmail.com" runat="server" style="background-color: white">
                                             </fieldset>
                                         </div>
                                     </div>
-
-                                    <%--Starting date--%>
-                                    <div class="form-row form-row-date">
+                                     <%--Subject field--%>
+                                     <div class="form-row">
                                         <div class="form-holder form-holder-2">
                                             <fieldset>
-                                                <legend>Starting Date
-                                                    <asp:Label ID="startDateError" runat="server" Text="  *" Style="color: red; font-size: 16px" Visible="false"></asp:Label></legend>
-                                                <asp:TextBox class="input100" TextMode="Date" type="text" name="startingDate" ID="startingDate" runat="server"></asp:TextBox>
+                                                <legend>Subject:<asp:Label ID="subjectError" runat="server" Text="  *" Style="color: red; font-size: 16px" Visible="false"></asp:Label></legend>
+                                                <input type="text" name="subject" id="txtSubject" class="form-control" placeholder="Subject" runat="server" style="background-color: white">
                                             </fieldset>
                                         </div>
                                     </div>
+                                      <%--Attachement field--%>
+                                     <div class="form-row">
+                                        <div class="form-holder form-holder-2" style="margin-bottom:0px;padding-bottom:0px">
+                                        
+                                                <label class="special-label">Attachements: 
+                                               </label>   </div></div>
+                                                <asp:FileUpload ID="FileUpload1" runat="server"  AllowMultiple="true" BackColor="#2c3e50" ForeColor="White" BorderColor="#2c3e50e" />
 
-                                    <%--Assigned Task--%>
-                                    <div class="wizard-header" id="assignedTask">
-                                        <h3 class="heading">Assigned Task</h3>
-                                        <p>Filled by trainee and signed by supervisor </p>
+                                    <br />  <br />
+                                     <%-- Message field--%>
+                                       <div class="form-row">
+                                        <div class="form-holder form-holder-2">
+                                            <label class="special-label">Message:
+                                                <asp:Label ID="messageError" runat="server" Text=" *" Style="color: red; font-size: 16px" Visible="false"></asp:Label></label>
+
+                                            <asp:TextBox ID="txtMessage" TextMode="MultiLine" class="form-control" placeholder="Write your message here..." runat="server"></asp:TextBox>
+
+                                        </div>
                                     </div>
-         
+
+                                     <%--Send button--%>
+                                    <div class="form-row">
+                                        <div class="container-login100-form-btn m-t-32">
+                                            <asp:Button class="login100-form-btn" Text="Send" runat="server" ID="btnSend" OnClick="btnSend_Click"></asp:Button>
+                                        </div>
+                                    </div>
+                                    <br />
+
                                     <br />
                                     <br />
                                 </div>
                             </section>
-
 
                         </div>
                     </div>
