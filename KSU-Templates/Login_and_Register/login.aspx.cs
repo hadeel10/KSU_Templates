@@ -96,7 +96,7 @@ namespace KSU_Templates.Login_and_Register
                 FormsAuthentication.RedirectFromLoginPage(userName.Text, false);
                 if (Roles.IsUserInRole(userName.Text.ToString(), "admin"))
                 {
-                    Response.Redirect("/Admin/crudOperation");
+                    Response.Redirect("/Admin/AdminHomePage");
 
                 }
                 else {
