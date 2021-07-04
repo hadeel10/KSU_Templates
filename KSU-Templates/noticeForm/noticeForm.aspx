@@ -55,7 +55,7 @@
     <section class="page-section" style="background-color: rgba(44, 62, 80,0.1);" id="follow-up">
 
         <!-- Contact Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary">Follow up Form</h2>
+        <h2 class="page-section-heading text-center text-uppercase text-secondary">Effective Date Notice Form</h2>
         <!-- Icon Divider-->
         <div class="divider-custom">
             <div class="divider-custom-line"></div>
@@ -88,13 +88,14 @@
                                         <div class="form-holder">
                                             <fieldset>
                                                 <legend>ID</legend>
-                                                <asp:TextBox ID="txtId" placeholder="ID" class="form-control" runat="server" TextMode="Number"></asp:TextBox>
+                                                <asp:TextBox ID="txtId" placeholder="ID" class="form-control" runat="server" ></asp:TextBox>
                                             </fieldset>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-holder form-holder-2">
-                                            <asp:DropDownList ID="major" runat="server"></asp:DropDownList>
+                                            <asp:DropDownList ID="major" runat="server" DataSourceID="SqlDataSource1" DataTextField="major" DataValueField="majorId"></asp:DropDownList>
+                                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:KSU_Templates_ConStr %>" SelectCommand="SELECT * FROM [major]"></asp:SqlDataSource>
                                                 <%--<select name="major" ID="major">
                                                     <option value="major" disabled selected>Major</option>
                                                     <option value="1">IT</option>
@@ -108,7 +109,8 @@
                                     <div class="form-row">
                                         <div class="form-holder form-holder-2">
                                           
-                                            <asp:DropDownList ID="track" runat="server"></asp:DropDownList>
+                                            <asp:DropDownList ID="track" runat="server" DataSourceID="SqlDataSource2" DataTextField="track" DataValueField="trackId"></asp:DropDownList>
+                                               <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:KSU_Templates_ConStr %>" SelectCommand="SELECT * FROM [track]"></asp:SqlDataSource>
                                                <%-- <select name="track" ID="track">
                                                     <option value="track" disabled selected>Track</option>
                                                     <option value="1">Network & Security</option>
@@ -153,7 +155,7 @@
                                         <div class="form-holder">
                                             <fieldset>
                                                 <legend>Name</legend>
-                                                <asp:TextBox ID="usName" placeholder="Name" class="form-control" runat="server" TextMode="Email"></asp:TextBox>
+                                                <asp:TextBox ID="usName" placeholder="Name" class="form-control" runat="server" ></asp:TextBox>
                                             </fieldset>
                                         </div>
                                         <div class="form-holder">
@@ -172,7 +174,9 @@
                                      <div class="form-row">
                                         <div class="form-holder form-holder-2">
                                           
-                                            <asp:DropDownList ID="ddInstitution" runat="server" class="form-control" placeholder="Institution"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddInstitution" runat="server" class="form-control" placeholder="Institution" DataSourceID="SqlDataSource3" DataTextField="institution" DataValueField="institutionId"></asp:DropDownList>
+                                        
+                                            <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:KSU_Templates_ConStr %>" SelectCommand="SELECT [institutionId], [institution] FROM [institution]"></asp:SqlDataSource>
                                         
                                         </div>
                                     </div>

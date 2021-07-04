@@ -1,5 +1,5 @@
 ﻿
-using KSU_TemplatesConnectionString.App_Code;
+using KSU_Templates.App_Code;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -29,14 +29,14 @@ namespace KSU_Templates.noticeForm
             Dictionary<string, object> myPara = new Dictionary<string, object>();
             myPara.Add("@name", txtName.Value.ToString());
             myPara.Add("@id",txtId.Text);
-            myPara.Add("@majorId","1");
-            myPara.Add("@trackId","1");
+            myPara.Add("@majorId", major.SelectedValue);
+            myPara.Add("@trackId", track.SelectedValue);
             myPara.Add("@traineeMobile",txtMobile.Text.ToString());
             myPara.Add("@homeTelephone",txtHomeTelephone.Text.ToString());
             myPara.Add("@traineeEmail",txtEmail.Text.ToString());
             myPara.Add("@universitySupervisor",usName.Text.ToString());
             myPara.Add("@universitySupervisorEmail",usEmail.Text.ToString());
-            myPara.Add("@institutionId","1");
+            myPara.Add("@institutionId", ddInstitution.SelectedValue);
             myPara.Add("@strDate", startingDate.Text.ToString());
             myPara.Add("@userName", Session["Username"]);
             myCrud.InsertUpdateDelete(mySql, myPara);
