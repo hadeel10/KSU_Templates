@@ -42,8 +42,9 @@
 
 
                     <li class="nav-item mx-0 mx-lg-1" id="home" runat="server"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/Student/HomePage">Home</a></li>
+                    <li class="nav-item mx-0 mx-lg-1" id="homeAdmin" runat="server" visible="false"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/Admin/AdminHomePage">Home</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a runat="server" class="nav-link py-3 px-0 px-lg-3 rounded" href="~/About">About</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a></li>
+                    <li class="nav-item mx-0 mx-lg-1" id ="contact" runat="server"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/Contact">Contact</a></li>
                     <li class="nav-item mx-0 mx-lg-1">
      
                         <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
