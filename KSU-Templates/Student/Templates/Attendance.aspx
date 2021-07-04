@@ -52,7 +52,7 @@
     <!-- Attendance Temaplate Section-->
     <section class="page-section" style="background-color: rgba(44, 62, 80,0.1);" id="attendance">
 
-        <!-- Contact Section Heading-->
+        <!-- attendance Section Heading-->
         <h2 class="page-section-heading text-center text-uppercase text-secondary">Attendance Form</h2>
         <!-- Icon Divider-->
         <div class="divider-custom">
