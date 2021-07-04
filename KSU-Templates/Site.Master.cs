@@ -15,6 +15,11 @@ namespace KSU_Templates
             if (!Roles.IsUserInRole("student"))
             {
                 home.Visible = false;
+                contact.Visible = false;
+            }
+            if (Roles.IsUserInRole("admin"))
+            {
+                homeAdmin.Visible = true; 
             }
         }
     }
