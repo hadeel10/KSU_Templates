@@ -88,7 +88,7 @@
                                             <fieldset>
                                                 <legend>Password<asp:Label ID="passwordError" runat="server" Text="  *" style="color:red; font-size:16px" Visible="false"></asp:Label>
                                                 </legend>
-                                                <asp:TextBox  type="text" class="form-control" id="password" name="password" placeholder="password" runat="server"></asp:TextBox>
+                                                <asp:TextBox class="form-control" type="password" id="password" name="password" placeholder="password" runat="server"></asp:TextBox>
                                             </fieldset>
                                         </div>
                 
