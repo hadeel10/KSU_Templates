@@ -98,7 +98,7 @@ namespace KSU_Templates.Admin_Form
             {
                 mySql = @"UPDATE institutionSupervisor
                      SET institutionSupervisor = @name, position=@position , officeTelephone=@officeTelephone ,
-                         institutionSupervisorMobile=@institutionSupervisorMobile , institutionSupervisorEmail=@institutionSupervisorEmail ,
+                         institutionSupervisorMobile=@institutionSupervisorMobile , institutionSupervisorEmail=@institutionSupervisorEmail,
                          institutionSupervisorSignature= @institutionSupervisorSignature 
                         WHERE institutionSupervisorId =@id"; 
 
@@ -108,7 +108,7 @@ namespace KSU_Templates.Admin_Form
             {
                 mySql = @"UPDATE institutionSupervisor
                      SET institutionSupervisor = @name, position=@position , officeTelephone=@officeTelephone ,
-                         institutionSupervisorMobile=@institutionSupervisorMobile , institutionSupervisorEmail=@institutionSupervisorEmail ,
+                         institutionSupervisorMobile=@institutionSupervisorMobile , institutionSupervisorEmail=@institutionSupervisorEmail
                                                 WHERE institutionSupervisorId =@id";
             }
 
