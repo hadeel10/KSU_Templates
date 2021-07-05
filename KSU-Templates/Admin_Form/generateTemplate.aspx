@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="generateTemplate.aspx.cs" Inherits="KSU_Templates.Admin_Form.generateTemplate" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="generateTemplate.aspx.cs" Inherits="KSU_Templates.Admin_Form.generateTemplate"  Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

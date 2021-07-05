@@ -105,15 +105,20 @@
                                     </div>
 
 
-                                    <div class="form-row">
-                                        <div class="form-holder form-holder-2">
-                                            <label class="special-label">
-                                                Institution's seal:<asp:Label ID="seal" runat="server" Text="  *" Style="color: red; font-size: 16px" Visible="false"></asp:Label>
-                                            </label>
-                                            &ensp; &ensp;<a href="../Login_and_Register/register"> Click to add Image </a>
+                                                 <%--Seal upload--%>
+                                    <div class="wizard-header">
+                                        <h3 class="heading">Institution's seal upload</h3>
+                                        <p>Please upload the Institution's seal</p>
 
-                                        </div>
+                                        <br />
+                                        <asp:FileUpload ID="FileUpload2" runat="server" onchange="ImagePreview(this);" BackColor="#2c3e50" ForeColor="White" BorderColor="#2c3e50e" />
                                     </div>
+
+                                    <div class="wizard-header" id="imageDiv">
+                                        <asp:Image ID="oldSeal" Visible="false" runat="server" Height="200" Width="200" />
+                                        <asp:Image ID="newSeal" Style="display: none" runat="server" Height="120px" Width="117px" />
+                                    </div>
+                                   
                                     <hr />
                                     <div class="wizard-header">
                                         <h3 class="heading">Training Supervisor's information</h3>
@@ -123,7 +128,7 @@
                                     <div class="form-row">
                                         <div class="form-holder form-holder-2">
                                             <fieldset>
-                                                <legend>Supervisor's Nameupervisor's Name</legend>
+                                                <legend>Supervisor's Name</legend>
                                                 <asp:TextBox ID="tsName" placeholder="Name" class="form-control" runat="server"></asp:TextBox>
                                             </fieldset>
                                         </div>
@@ -159,14 +164,18 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-row">
-                                        <div class="form-holder form-holder-2">
-                                            <label class="special-label">
-                                                Signature:<asp:Label ID="signatureError" runat="server" Text="  *" Style="color: red; font-size: 16px" Visible="false"></asp:Label>
-                                            </label>
-                                            &ensp; &ensp;<a href="../Login_and_Register/register"> Click to add Image </a>
+                                                 <%--Signature upload--%>
+                                    <div class="wizard-header">
+                                        <h3 class="heading">Signature upload</h3>
+                                        <p>Please upload your Signature </p>
 
-                                        </div>
+                                        <br />
+                                        <asp:FileUpload ID="FileUpload1" runat="server" onchange="ImagePreview(this);" BackColor="#2c3e50" ForeColor="White" BorderColor="#2c3e50e" />
+                                    </div>
+
+                                    <div class="wizard-header" id="imageDiv">
+                                        <asp:Image ID="oldSignature" Visible="false" runat="server" Height="200" Width="200" />
+                                        <asp:Image ID="newSignature" Style="display: none" runat="server" Height="120px" Width="117px" />
                                     </div>
 
 

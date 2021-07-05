@@ -71,6 +71,18 @@
                 Our platform aims to facilitate the summer training procedures for students of King Saud University and the institutions that have COOP training programs,
         by providing them with all the required forms documented with the signature and seal of the training intitution
             </p>
+            <hr />
+            <p>
+                <strong>Development Team:</strong>
+                - 1181 SD-I Hadeel Alshabanat Sum2021
+                - 1120 SD-I Rahaf Alzakari Sum2021
+                - 1180 SD-I Reema Aladwan Sum2021
+            </p>
+            <hr />
+            <p>
+                <strong>References:</strong>
+                google drive
+            </p>
         </div>
 
 

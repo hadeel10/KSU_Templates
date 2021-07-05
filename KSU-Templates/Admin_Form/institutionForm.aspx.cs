@@ -41,8 +41,28 @@ namespace KSU_Templates.Admin_Form
                 officeTelephone.Text= (String)dr["officeTelephone"];
 
             }
-           
-            
+            // Retrive and display traineeSignature
+            if (!Convert.IsDBNull(dr["institutionSeal"]))
+            {
+                byte[] imageData = (byte[])dr["institutionSeal"];
+                string img = Convert.ToBase64String(imageData, 0, imageData.Length);
+                oldSeal.ImageUrl = "data:image/png;base64," + img;
+                oldSeal.Visible = true;
+
+
+            }
+
+            if (!Convert.IsDBNull(dr["institutionSupervisorSignature"]))
+            {
+                byte[] imageData = (byte[])dr["institutionSupervisorSignature"];
+                string img = Convert.ToBase64String(imageData, 0, imageData.Length);
+                oldSignature.ImageUrl = "data:image/png;base64," + img;
+                oldSignature.Visible = true;
+
+
+            }
+
+
         }
 
         protected void btnUbdate_Click(object sender, EventArgs e)
@@ -53,6 +73,7 @@ namespace KSU_Templates.Admin_Form
             if(successful_Supervisor_Update==1 && successful_Institution_Update == 1)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Updated Successfully')", true);
+                load_Information();
             }
 
         }
@@ -61,38 +82,68 @@ namespace KSU_Templates.Admin_Form
         protected int updateSupervisor()
         {
             CRUD myCrud = new CRUD();
-            string mySql = @"UPDATE institutionSupervisor
-                     SET institutionSupervisor = @name, position=@position , officeTelephone=@officeTelephone ,
-                         institutionSupervisorMobile=@institutionSupervisorMobile , institutionSupervisorEmail=@institutionSupervisorEmail ,
-                         institutionSupervisorSignature= @institutionSupervisorSignature 
-                        WHERE institutionSupervisorId = 1";
+            string mySql = "sql command";
             Dictionary<string, object> myPara = new Dictionary<string, object>();
             myPara.Add("@name", tsName.Text.ToString());
             myPara.Add("@position", position.Text.ToString());
             myPara.Add("@officeTelephone", officeTelephone.Text.ToString());
             myPara.Add("@institutionSupervisorMobile", mobile.Text.ToString());
             myPara.Add("@institutionSupervisorEmail", tsEmail.Text.ToString());
-            myPara.Add("@institutionSupervisorSignature", "xxxx");
+            myPara.Add("@id",1);
 
+            //myPara.Add("@institutionSupervisorSignature", "xxxx");
 
-           
-           return myCrud.InsertUpdateDelete(mySql, myPara);
+            // Upload traineeSignature
+            if (FileUpload1.HasFile)
+            {
+                mySql = @"UPDATE institutionSupervisor
+                     SET institutionSupervisor = @name, position=@position , officeTelephone=@officeTelephone ,
+                         institutionSupervisorMobile=@institutionSupervisorMobile , institutionSupervisorEmail=@institutionSupervisorEmail ,
+                         institutionSupervisorSignature= @institutionSupervisorSignature 
+                        WHERE institutionSupervisorId =@id"; 
+
+                myPara.Add("@institutionSupervisorSignature", FileUpload1.FileBytes);
+            }
+            else
+            {
+                mySql = @"UPDATE institutionSupervisor
+                     SET institutionSupervisor = @name, position=@position , officeTelephone=@officeTelephone ,
+                         institutionSupervisorMobile=@institutionSupervisorMobile , institutionSupervisorEmail=@institutionSupervisorEmail ,
+                                                WHERE institutionSupervisorId =@id";
+            }
+
+            return myCrud.InsertUpdateDelete(mySql, myPara);
 
         }
 
         protected int updateInstitution()
         {
             CRUD myCrud = new CRUD();
-            string mySql = @"UPDATE institution
-                     SET institution = @name, address=@address , department=@department ,
-                         institutionSupervisorId=1 , institutionSeal=@institutionSeal
-                        WHERE institutionId = 1";
+            string mySql = "sql command";
             Dictionary<string, object> myPara = new Dictionary<string, object>();
             myPara.Add("@name", name.Text.ToString());
             myPara.Add("@address", address.Text.ToString());
             myPara.Add("@department", department.Text.ToString());
-            myPara.Add("@institutionSeal", "xxxx");
-            
+            myPara.Add("@id",1);
+
+            if (FileUpload2.HasFile)
+            {
+                mySql = @"UPDATE institution
+                     SET institution = @name, address = @address, department = @department,
+                         institutionSupervisorId =@id, institutionSeal = @institutionSeal
+                        WHERE institutionId =@id";
+
+                myPara.Add("@institutionSeal", FileUpload2.FileBytes);
+            }
+            else
+            {
+                mySql = @"UPDATE institution
+                     SET institution = @name, address = @address, department = @department,
+                         institutionSupervisorId =@id
+                        WHERE institutionId =@id";
+            }
+
+
             return myCrud.InsertUpdateDelete(mySql, myPara);
 
         }
