@@ -19,7 +19,8 @@ namespace KSU_Templates
             }
             if (Roles.IsUserInRole("admin"))
             {
-                homeAdmin.Visible = true; 
+                homeAdmin.Visible = true;
+                ajax.Visible = true;
             }
         }
     }
