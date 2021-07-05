@@ -39,7 +39,10 @@ namespace KSU_Templates.Student.Templates
                     saveAttendance();
                     updateTrainee();
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Saved Successfully')", true);
-                    Response.Redirect(Request.RawUrl);
+                    // Response.Redirect(Request.RawUrl);
+                    displayAttendanceInformation();
+                    getStudentInfo();
+                    clear();
                 }
                 else
                 {
@@ -551,17 +554,29 @@ namespace KSU_Templates.Student.Templates
 
 
         }
-        /*  protected void updateIstituation()
-          {
-              CRUD myCrud = new CRUD();
-              string mySql = @"UPDATE [dbo].[institution]
-                SET institution = @institution
-                  WHERE institutionId = 1;";
-              Dictionary<string, object> myPara = new Dictionary<string, object>();
-              myPara.Add("@institution", institution.Value.ToString());
-              myCrud.InsertUpdateDelete(mySql, myPara);
 
-          } */
+        //***************************************************************
 
+        protected void clear()
+        {
+            week.SelectedIndex = 0;
+            ddlDay.SelectedIndex = 0;
+            attendanceDate.Text = "";
+            timeInField.Text = "";
+            timeOutField.Text = "";
+            comments.Value = "";
+        }
+            /*  protected void updateIstituation()
+              {
+                  CRUD myCrud = new CRUD();
+                  string mySql = @"UPDATE [dbo].[institution]
+                    SET institution = @institution
+                      WHERE institutionId = 1;";
+                  Dictionary<string, object> myPara = new Dictionary<string, object>();
+                  myPara.Add("@institution", institution.Value.ToString());
+                  myCrud.InsertUpdateDelete(mySql, myPara);
+
+              } */
+
+        }
     }
-}

@@ -157,28 +157,39 @@ namespace KSU_Templates.Admin
             removeError();
             if (!checkEmptyField())
             {
-
-                if (checkEmailFormat(traineeEmail))
+                if (passwordLength())
                 {
-                    if (checkEmailFormat(supervisorEmail) || string.IsNullOrEmpty(supervisorEmail.Text))
+                    if (checkEmailFormat(traineeEmail))
                     {
-                        addNewTrainee();
+                        if (checkEmailFormat(supervisorEmail) || string.IsNullOrEmpty(supervisorEmail.Text))
+                        {
+                            addNewTrainee();
+                        }
+                        else
+                        {
+
+                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('the format of supervisor email is wrong!!')", true);
+                            supervisorEmailError.Visible = true;
+                            ScriptManager.RegisterStartupScript(this, GetType(), "removeClass", "removeClass();removeClassFromUserNameAndPassword()", true);
+                            btnUpdate.Visible = false;
+                            btnSave.Visible = true;
+                        }
+
                     }
                     else
                     {
-
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('the format of supervisor email is wrong!!')", true);
-                        supervisorEmailError.Visible = true;
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('the format of trainee email is wrong!!')", true);
+                        traineeEmailError.Visible = true;
                         ScriptManager.RegisterStartupScript(this, GetType(), "removeClass", "removeClass();removeClassFromUserNameAndPassword()", true);
                         btnUpdate.Visible = false;
                         btnSave.Visible = true;
-                    }
 
+                    }
                 }
-                else
-                {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('the format of trainee email is wrong!!')", true);
-                    traineeEmailError.Visible = true;
+                else {
+
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Password length should be more than 3 !!')", true);
+                    passwordError.Visible = true;
                     ScriptManager.RegisterStartupScript(this, GetType(), "removeClass", "removeClass();removeClassFromUserNameAndPassword()", true);
                     btnUpdate.Visible = false;
                     btnSave.Visible = true;
@@ -186,6 +197,7 @@ namespace KSU_Templates.Admin
                 }
             }
             else {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please fill out the required fields !!')", true);
                 ScriptManager.RegisterStartupScript(this, GetType(), "removeClass", "removeClass();removeClassFromUserNameAndPassword()", true);
                 btnUpdate.Visible = false;
                 btnSave.Visible = true;
@@ -193,7 +205,16 @@ namespace KSU_Templates.Admin
             }
 
         }
+        //***************************************************************
 
+        protected bool passwordLength() {
+
+            bool isCorrect = true;
+            if (password.Text.Trim().Length < 3) {
+                isCorrect = false;
+            }
+            return isCorrect;
+        }
 
         //***************************************************************
 
