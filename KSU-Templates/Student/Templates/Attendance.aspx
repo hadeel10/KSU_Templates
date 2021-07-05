@@ -259,7 +259,7 @@
                     <asp:BoundField DataField ="timeOut" HeaderText ="Time Out" />    
                     <asp:BoundField DataField ="comment" HeaderText ="Comment" />    
                       <asp:ButtonField runat="server" CausesValidation="false" 
-                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image"/>
+                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image" ItemStyle-CssClass="buttonStyle"/>
             </Columns>
         </asp:GridView>
     </div>
@@ -285,7 +285,7 @@
                     <asp:BoundField DataField ="timeOut" HeaderText ="Time Out" />    
                     <asp:BoundField DataField ="comment" HeaderText ="Comment" />    
                       <asp:ButtonField runat="server" CausesValidation="false" 
-                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image"/>
+                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image" ItemStyle-CssClass="buttonStyle"/>
             </Columns>
         </asp:GridView>
     </div>
@@ -312,7 +312,7 @@
                     <asp:BoundField DataField ="timeOut" HeaderText ="Time Out" />    
                     <asp:BoundField DataField ="comment" HeaderText ="Comment" />    
                       <asp:ButtonField runat="server" CausesValidation="false" 
-                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image"/>
+                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image" ItemStyle-CssClass="buttonStyle"/>
             </Columns>
         </asp:GridView>
     </div>
@@ -338,7 +338,7 @@
                     <asp:BoundField DataField ="timeOut" HeaderText ="Time Out" />    
                     <asp:BoundField DataField ="comment" HeaderText ="Comment" />    
                       <asp:ButtonField runat="server" CausesValidation="false" 
-                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image"/>
+                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image" ItemStyle-CssClass="buttonStyle"/>
             </Columns>
         </asp:GridView>
     </div>
@@ -366,7 +366,7 @@
                     <asp:BoundField DataField ="timeOut" HeaderText ="Time Out" />    
                     <asp:BoundField DataField ="comment" HeaderText ="Comment" />    
                       <asp:ButtonField runat="server" CausesValidation="false" 
-                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image"/>
+                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image" ItemStyle-CssClass="buttonStyle"/>
             </Columns>
         </asp:GridView>
     </div>
@@ -393,7 +393,7 @@
                     <asp:BoundField DataField ="timeOut" HeaderText ="Time Out" />    
                     <asp:BoundField DataField ="comment" HeaderText ="Comment" />    
                       <asp:ButtonField runat="server" CausesValidation="false" 
-                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image"/>
+                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image" ItemStyle-CssClass="buttonStyle"/>
             </Columns>
         </asp:GridView>
     </div>
@@ -419,7 +419,7 @@
                     <asp:BoundField DataField ="timeOut" HeaderText ="Time Out" />    
                     <asp:BoundField DataField ="comment" HeaderText ="Comment" />    
                       <asp:ButtonField runat="server" CausesValidation="false" 
-                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image"/>
+                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image" ItemStyle-CssClass="buttonStyle"/>
             </Columns>
         </asp:GridView>
     </div>
@@ -446,7 +446,7 @@
                     <asp:BoundField DataField ="timeOut" HeaderText ="Time Out" />    
                     <asp:BoundField DataField ="comment" HeaderText ="Comment" />    
                       <asp:ButtonField runat="server" CausesValidation="false" 
-                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image"/>
+                         CommandName="delete" Text="Delete" ItemStyle-ForeColor="Red" ImageUrl="/images/x-button.png" ButtonType="Image" ItemStyle-CssClass="buttonStyle"/>
             </Columns>
         </asp:GridView>
     </div>
@@ -505,6 +505,10 @@ table.myGridView th
 {
     padding:20px
 }
+
+.buttonStyle {
+                padding-top: 15px;
+            }
 
     </style>
 
