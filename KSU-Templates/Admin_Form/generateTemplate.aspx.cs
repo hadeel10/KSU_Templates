@@ -139,12 +139,6 @@ namespace KSU_Templates.Admin_Form
                         application.Selection.TypeText((String)dr["department"]);
 
                     }
-                    else if (field.Code.Text.Contains("institutionSeal"))
-                    {
-                        field.Select();
-                        //application.Selection.TypeText((String)dr["institutionSeal"]);
-
-                    }
                     else if (field.Code.Text.Contains("trainingSupervisor"))
                     {
                         field.Select();
@@ -179,12 +173,6 @@ namespace KSU_Templates.Admin_Form
                         application.Selection.TypeText((String)dr["institutionSupervisorEmail"]);
 
                     }
-                    else if (field.Code.Text.Contains("supervisorSignature"))
-                    {
-                        field.Select();
-                        application.Selection.TypeText("xxxxxxxxx");
-
-                    }
                     else if (field.Code.Text.Contains("startingDate"))
                     {
 
@@ -194,19 +182,12 @@ namespace KSU_Templates.Admin_Form
                     }
                     else if (field.Code.Text.Contains("traineeSignature"))
                     {
-                      // DownloadImage((byte[])dr["institutionSeal"]);
-                        
-
-                        
-
                         field.Select();
-                        
+                        application.Selection.TypeText((String)dr["trainee"]);
                        // application.Selection.InlineShapes.AddPicture(@"C:\Users\altoo\Downloads\seal.jpg");
-                       
                     }
 
                 }
-                //document.SaveAs2(FileName: @"C:\projects\Effective_Date_Notice2.pdf");
                 document.SaveAs2(FileName: @"C:\projects\Effective_Date_Notice.dox");
 
                 document.Close();
@@ -304,13 +285,6 @@ namespace KSU_Templates.Admin_Form
                             }
 
 
-                            else if (field.Code.Text.Contains("supervisorSignature"))
-                            {
-                                field.Select();
-                                application.Selection.TypeText((String)dr["institutionSupervisor"]);
-                                //application.Selection.InlineShapes.AddPicture(@"C:\Users\altoo\Downloads\seal.jpg");
-
-                            }
                             else if (field.Code.Text.Contains("week1"))
                             {
                                 if (Convert.ToInt32(dr["weekId"]) == 1)
@@ -401,39 +375,19 @@ namespace KSU_Templates.Admin_Form
                                     application.Selection.TypeText((String)dr["task4"]);
                                 }
                             }
-
-
-
-
                         }
-
-
-                      
-
                     }
-
-
-
                 }
                 document.SaveAs2(FileName: @"C:\projects\follow-up.dox");
                 document.Close();
                 successful = sendEmailViaGmail(traineeEmail);
                 File.Delete(@"C:\projects\follow-up.dox");
             }
-           
-
             if (successful.Equals("Email Send successfully"))
             {
-                //Label1.Text = successful;
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Emails have been sent successfully!')", true);
-
             }
-
-
             application.Quit();
-
-
-
         }
 
         protected void Trainee_Attendance()
@@ -456,14 +410,10 @@ namespace KSU_Templates.Admin_Form
                 document = application.Documents.Add(Template: @"C:\projects\attendance.dotx");
                 while (dr.Read())
                 {
-                    //document = application.Documents.Add(Template: @"C:\projects\follow-up.dotx"); A
-
                     if (dr["userName"].ToString() == usernames_dr["userName"].ToString())
                     {
                         traineeEmail = (String)dr["traineeEmail"];
 
-
-                        //application.Visible = true;
                         foreach (Microsoft.Office.Interop.Word.Field field in document.Fields)
                              {
 
@@ -501,23 +451,12 @@ namespace KSU_Templates.Admin_Form
                         application.Selection.TypeText((String)dr["institutionSupervisor"]);
 
                     }
-
-
-                    else if (field.Code.Text.Contains("signature"))
-                    {
-                        field.Select();
-                        application.Selection.TypeText((String)dr["trainee"]);
-                        //application.Selection.InlineShapes.AddPicture(@"C:\Users\altoo\Downloads\seal.jpg");
-
-                    }
-                    else if (field.Code.Text.Contains("supervisorSigneture"))
-                    {
-                        field.Select();
-                        application.Selection.TypeText((String)dr["institutionSupervisor"]);
-                        //application.Selection.InlineShapes.AddPicture(@"C:\Users\altoo\Downloads\seal.jpg");
-
-                    }
-                    else if (Convert.ToInt32(dr["week"]) == 1 && Convert.ToInt32(dr["dayId"]) == 1)//row 1
+                            else if (field.Code.Text.Contains("signature"))
+                            {
+                                field.Select();
+                                application.Selection.TypeText((String)dr["trainee"]);
+                            }
+                            else if (Convert.ToInt32(dr["week"]) == 1 && Convert.ToInt32(dr["dayId"]) == 1)//row 1
                         {
                         if (field.Code.Text.Contains("w1d1Date"))
                         {
@@ -653,39 +592,21 @@ namespace KSU_Templates.Admin_Form
                                    
                                 }
                             }
-
-
-
-
                         }
-
-
-
-
                     }
-
-
-
                 }
                 document.SaveAs2(FileName: @"C:\projects\attendance.dox");
                 document.Close();
                 successful = sendEmailViaGmail(traineeEmail);
                 File.Delete(@"C:\projects\follow-up.dox");
             }
-        
 
             if (successful.Equals("Email Send successfully"))
             {
                 //Label1.Text = successful;
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Emails have been sent successfully!')", true);
-
             }
-
-
             application.Quit();
-
-
-
         }
 
         protected SqlDataReader CountUsernames()
