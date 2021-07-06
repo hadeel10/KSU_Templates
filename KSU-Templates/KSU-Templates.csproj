@@ -48,6 +48,10 @@
       <HintPath>..\..\..\..\Desktop\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -111,6 +115,8 @@
     <Content Include="About.aspx" />
     <Content Include="Admin\AdminHomePage.aspx" />
     <Content Include="Admin\crudOperation.aspx" />
+    <Content Include="Admin\generateTemplate.aspx" />
+    <Content Include="Admin\institutionForm.aspx" />
     <Content Include="Bootstrap\Template.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\assets\favicon.ico" />
@@ -272,6 +278,7 @@
     <Content Include="Student\HomePage.aspx" />
     <Content Include="Student\Templates\FollowUp.aspx" />
     <Content Include="Student\Templates\Attendance.aspx" />
+    <Content Include="Student\Templates\noticeForm.aspx" />
     <Content Include="vendor\animate\animate.css" />
     <Content Include="vendor\animsition\css\animsition.css" />
     <Content Include="vendor\animsition\css\animsition.min.css" />
@@ -321,6 +328,20 @@
     </Compile>
     <Compile Include="Admin\crudOperation.aspx.designer.cs">
       <DependentUpon>crudOperation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\generateTemplate.aspx.cs">
+      <DependentUpon>generateTemplate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\generateTemplate.aspx.designer.cs">
+      <DependentUpon>generateTemplate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\institutionForm.aspx.cs">
+      <DependentUpon>institutionForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\institutionForm.aspx.designer.cs">
+      <DependentUpon>institutionForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\CRUD.cs" />
     <Compile Include="App_Code\mailMgr.cs" />
@@ -406,6 +427,13 @@
     </Compile>
     <Compile Include="Student\Templates\Attendance.aspx.designer.cs">
       <DependentUpon>Attendance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\Templates\noticeForm.aspx.cs">
+      <DependentUpon>noticeForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\Templates\noticeForm.aspx.designer.cs">
+      <DependentUpon>noticeForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
