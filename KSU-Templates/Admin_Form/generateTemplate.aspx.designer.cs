@@ -13,6 +13,15 @@ namespace KSU_Templates.Admin_Form {
     public partial class generateTemplate {
         
         /// <summary>
+        /// download control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button download;
+        
+        /// <summary>
         /// ddtemplate control.
         /// </summary>
         /// <remarks>
@@ -29,14 +38,5 @@ namespace KSU_Templates.Admin_Form {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSend;
-        
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
     }
 }

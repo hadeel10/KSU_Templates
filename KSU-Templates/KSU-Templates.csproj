@@ -319,7 +319,7 @@
     <Content Include="images\icons\favicon.ico" />
     <Content Include="Login_and_Register\login.aspx" />
     <Content Include="Login_and_Register\register.aspx" />
-    <Content Include="noticeForm\noticeForm.aspx" />
+    <Content Include="Student\Templates\noticeForm.aspx" />
     <Content Include="obj\Debug\KSU-Templates.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\KSU-Templates.dll" />
     <Content Include="obj\Debug\KSU-Templates.pdb" />
@@ -471,11 +471,11 @@
     <Compile Include="Login_and_Register\register.aspx.designer.cs">
       <DependentUpon>register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="noticeForm\noticeForm.aspx.cs">
+    <Compile Include="Student\Templates\noticeForm.aspx.cs">
       <DependentUpon>noticeForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="noticeForm\noticeForm.aspx.designer.cs">
+    <Compile Include="Student\Templates\noticeForm.aspx.designer.cs">
       <DependentUpon>noticeForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="noticeForm.aspx.cs" Inherits="KSU_Templates.noticeForm.WebForm1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="noticeForm.aspx.cs" Inherits="KSU_Templates.Templates.WebForm1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -82,8 +82,8 @@
                                         <div class="form-holder">
                                             <fieldset>
                                                 <legend>Name</legend>
-                                                <input type="text" class="form-control" id="txtName" name="name" placeholder="Name" runat="server">
-                                            </fieldset>
+                                                <asp:TextBox ID="txtName" placeholder="Name" class="form-control" runat="server"></asp:TextBox>
+                                                 </fieldset>
                                         </div>
                                         <div class="form-holder">
                                             <fieldset>
@@ -96,7 +96,7 @@
                                         <div class="form-holder form-holder-2">
                                             <asp:DropDownList ID="major" runat="server" DataSourceID="SqlDataSource1" DataTextField="major" DataValueField="majorId"></asp:DropDownList>
                                                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:KSU_Templates_ConStr %>" SelectCommand="SELECT * FROM [major]"></asp:SqlDataSource>
-                                                <%--<select name="major" ID="major">
+                                            <%--<select name="major" ID="major">
                                                     <option value="major" disabled selected>Major</option>
                                                     <option value="1">IT</option>
                                                     <option value="2">CS</option>
@@ -111,7 +111,7 @@
                                           
                                             <asp:DropDownList ID="track" runat="server" DataSourceID="SqlDataSource2" DataTextField="track" DataValueField="trackId"></asp:DropDownList>
                                                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:KSU_Templates_ConStr %>" SelectCommand="SELECT * FROM [track]"></asp:SqlDataSource>
-                                               <%-- <select name="track" ID="track">
+                                            <%-- <select name="track" ID="track">
                                                     <option value="track" disabled selected>Track</option>
                                                     <option value="1">Network & Security</option>
                                                     <option value="2">Data Management</option>
@@ -190,13 +190,18 @@
                                         </div>
                                     </div>
 
-                                     <div class="form-row">
-                                        <div class="form-holder form-holder-2">
-                                            <label class="special-label">Signature:<asp:Label ID="signatureError" runat="server" Text="  *" style="color:red; font-size:16px" Visible="false"></asp:Label>
-</label>
-                                       &ensp; &ensp;<a href="../Login_and_Register/register"> Click to add Image </a>
-						
-                                        </div>
+                                     <%--Signature upload--%>
+                                    <div class="wizard-header">
+                                        <h3 class="heading">Signature upload</h3>
+                                        <p>Please upload your Signature </p>
+
+                                        <br />
+                                        <asp:FileUpload ID="FileUpload1" runat="server" onchange="ImagePreview(this);" BackColor="#2c3e50" ForeColor="White" BorderColor="#2c3e50e" />
+                                    </div>
+
+                                    <div class="wizard-header" id="imageDiv">
+                                        <asp:Image ID="oldSignature" Visible="false" runat="server" Height="200" Width="200" />
+                                        <asp:Image ID="newSignature" Style="display: none" runat="server" Height="120px" Width="117px" />
                                     </div>
 
 

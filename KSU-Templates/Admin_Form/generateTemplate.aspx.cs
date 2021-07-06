@@ -1,7 +1,4 @@
-﻿using iTextSharp.text;
-using iTextSharp.text.html.simpleparser;
-using iTextSharp.text.pdf;
-using KSU_Templates.App_Code;
+﻿using KSU_Templates.App_Code;
 using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
@@ -43,7 +40,7 @@ namespace KSU_Templates.Admin_Form
 
         }
 
-        protected async void Effective_Date_Notice()
+        protected void Effective_Date_Notice()
         {
             // code to connect to db  and pull student and institution information 
             CRUD myCrud = new CRUD();
@@ -60,8 +57,7 @@ namespace KSU_Templates.Admin_Form
             SqlDataReader dr = myCrud.getDrPassSql(mySql);
 
 
-            // gvInternData.DataSource = dr;
-            // gvInternData.DataBind();
+           
 
             var application = new Microsoft.Office.Interop.Word.Application();
             var document = new Microsoft.Office.Interop.Word.Document();
@@ -71,8 +67,7 @@ namespace KSU_Templates.Admin_Form
 
 
             // dr.Read() returns true if there are more rows; otherwise false.
-            int i = 1;
-
+ 
             while (dr.Read())
             {
                 document = application.Documents.Add(Template: @"C:\projects\noticeForm.dotx");
@@ -211,13 +206,13 @@ namespace KSU_Templates.Admin_Form
                     }
 
                 }
-                document.SaveAs2(FileName: @"C:\projects\Effective_Date_Notice2.pdf");
-               // document.SaveAs2(FileName: @"C:\projects\Effective_Date_Notice.dox");
+                //document.SaveAs2(FileName: @"C:\projects\Effective_Date_Notice2.pdf");
+                document.SaveAs2(FileName: @"C:\projects\Effective_Date_Notice.dox");
 
                 document.Close();
-                ++i;
+             
                 successful = sendEmailViaGmail((String)dr["traineeEmail"]);
-                File.Delete(@"C:\projects\Effective_Date_Notice.pdf");
+                File.Delete(@"C:\projects\Effective_Date_Notice.dox");
                
 
 
@@ -239,187 +234,193 @@ namespace KSU_Templates.Admin_Form
 
         protected void Follow_Up_form()
         {
-            // code to connect to db  and pull student and institution information 
-            CRUD myCrud = new CRUD();
-
-            string mySql = @"select * from followup 
-                           Inner Join trainee on trainee.userName= followup.userName
-                           Inner Join institution on institution.institutionId = trainee.institutionId
-                           Inner join institutionSupervisor on institutionSupervisor.institutionSupervisorId= institution.institutionSupervisorId
-                           where followup.userName =@username";
-            Dictionary<string, object> myPara = new Dictionary<string, object>();
-            myPara.Add("@username", "Reema");////////////////////////Session["Username"]
-            SqlDataReader dr = myCrud.getDrPassSql(mySql, myPara);
 
 
-            // gvInternData.DataSource = dr;
-            // gvInternData.DataBind();
+            SqlDataReader dr = recharge_dr();
+            SqlDataReader usernames_dr = CountUsernames();
+
+
 
             var application = new Microsoft.Office.Interop.Word.Application();
             var document = new Microsoft.Office.Interop.Word.Document();
-            document = application.Documents.Add(Template: @"C:\projects\follow-up.dotx");
             Object oMissing = System.Reflection.Missing.Value;
             String successful = "";
+            String traineeEmail = "";
 
 
 
             // dr.Read() returns true if there are more rows; otherwise false.
-            String traineeEmail = "";
-
-            while (dr.Read())
+            while (usernames_dr.Read())
             {
-
-                //application.Visible = true;
-                foreach (Microsoft.Office.Interop.Word.Field field in document.Fields)
+                dr = recharge_dr();
+                document = application.Documents.Add(Template: @"C:\projects\follow-up.dotx");//B
+                while (dr.Read())
                 {
+                    //document = application.Documents.Add(Template: @"C:\projects\follow-up.dotx"); A
 
-                    if (field.Code.Text.Contains("name"))
-                    {
-                        field.Select();
-                        application.Selection.TypeText((String)dr["trainee"]);
-
-                    }
-                    else if (field.Code.Text.Contains("id"))
-                    {
-                        int m = Convert.ToInt32(dr["id"]);
-                        field.Select();
-                        application.Selection.TypeText(m.ToString());
-
-                    }
-
-                    else if (field.Code.Text.Contains("institution"))
-                    {
-                        field.Select();
-                        application.Selection.TypeText((String)dr["institution"]);
-
-                    }
-                    else if (field.Code.Text.Contains("startDate"))
-                    {
-
-                        field.Select();
-                        application.Selection.TypeText((String)dr["triningStartingDate"]);
-
-                    }
-
-                    else if (field.Code.Text.Contains("supervisorName"))
-                    {
-                        field.Select();
-                        application.Selection.TypeText((String)dr["institutionSupervisor"]);
-
-                    }
+                    if (dr["userName"].ToString() == usernames_dr["userName"].ToString())
+                {
+                        traineeEmail = (String)dr["traineeEmail"];
 
 
-                    else if (field.Code.Text.Contains("supervisorSignature"))
-                    {
-                        field.Select();
-                        application.Selection.TypeText((String)dr["institutionSupervisor"]);
-                        //application.Selection.InlineShapes.AddPicture(@"C:\Users\altoo\Downloads\seal.jpg");
 
-                    }
-                    else if (field.Code.Text.Contains("week1"))
-                    {
-                        if (Convert.ToInt32(dr["weekId"]) == 1)
+                        //application.Visible = true;
+                        foreach (Microsoft.Office.Interop.Word.Field field in document.Fields)
                         {
-                            field.Select();
-                            application.Selection.TypeText((String)dr["task1"]);
-                            application.Selection.TypeText((String)dr["task2"]);
-                            application.Selection.TypeText((String)dr["task3"]);
-                            application.Selection.TypeText((String)dr["task4"]);
+
+                            if (field.Code.Text.Contains("name"))
+                            {
+                                field.Select();
+                                application.Selection.TypeText((String)dr["trainee"]);
+
+                            }
+                            else if (field.Code.Text.Contains("id"))
+                            {
+                                int m = Convert.ToInt32(dr["id"]);
+                                field.Select();
+                                application.Selection.TypeText(m.ToString());
+
+                            }
+
+                            else if (field.Code.Text.Contains("institution"))
+                            {
+                                field.Select();
+                                application.Selection.TypeText((String)dr["institution"]);
+
+                            }
+                            else if (field.Code.Text.Contains("startDate"))
+                            {
+
+                                field.Select();
+                                application.Selection.TypeText((String)dr["triningStartingDate"]);
+
+                            }
+
+                            else if (field.Code.Text.Contains("supervisorName"))
+                            {
+                                field.Select();
+                                application.Selection.TypeText((String)dr["institutionSupervisor"]);
+
+                            }
+
+
+                            else if (field.Code.Text.Contains("supervisorSignature"))
+                            {
+                                field.Select();
+                                application.Selection.TypeText((String)dr["institutionSupervisor"]);
+                                //application.Selection.InlineShapes.AddPicture(@"C:\Users\altoo\Downloads\seal.jpg");
+
+                            }
+                            else if (field.Code.Text.Contains("week1"))
+                            {
+                                if (Convert.ToInt32(dr["weekId"]) == 1)
+                                {
+                                    field.Select();
+                                    application.Selection.TypeText((String)dr["task1"]);
+                                    application.Selection.TypeText((String)dr["task2"]);
+                                    application.Selection.TypeText((String)dr["task3"]);
+                                    application.Selection.TypeText((String)dr["task4"]);
+                                }
+
+                            }
+                            else if (field.Code.Text.Contains("week2"))
+                            {
+                                field.Select();
+                                if (Convert.ToInt32(dr["weekId"]) == 2)
+                                {
+                                    field.Select();
+                                    application.Selection.TypeText((String)dr["task1"]);
+                                    application.Selection.TypeText((String)dr["task2"]);
+                                    application.Selection.TypeText((String)dr["task3"]);
+                                    application.Selection.TypeText((String)dr["task4"]);
+                                }
+                            }
+                            else if (field.Code.Text.Contains("week3"))
+                            {
+                                if (Convert.ToInt32(dr["weekId"]) == 3)
+                                {
+                                    field.Select();
+                                    application.Selection.TypeText((String)dr["task1"]);
+                                    application.Selection.TypeText((String)dr["task2"]);
+                                    application.Selection.TypeText((String)dr["task3"]);
+                                    application.Selection.TypeText((String)dr["task4"]);
+                                }
+                            }
+                            else if (field.Code.Text.Contains("week4"))
+                            {
+                                if (Convert.ToInt32(dr["weekId"]) == 4)
+                                {
+                                    field.Select();
+                                    application.Selection.TypeText((String)dr["task1"]);
+                                    application.Selection.TypeText((String)dr["task2"]);
+                                    application.Selection.TypeText((String)dr["task3"]);
+                                    application.Selection.TypeText((String)dr["task4"]);
+                                }
+                            }
+                            else if (field.Code.Text.Contains("week5"))
+                            {
+                                if (Convert.ToInt32(dr["weekId"]) == 5)
+                                {
+                                    field.Select();
+                                    application.Selection.TypeText((String)dr["task1"]);
+                                    application.Selection.TypeText((String)dr["task2"]);
+                                    application.Selection.TypeText((String)dr["task3"]);
+                                    application.Selection.TypeText((String)dr["task4"]);
+                                }
+                            }
+                            else if (field.Code.Text.Contains("week6"))
+                            {
+                                if (Convert.ToInt32(dr["weekId"]) == 6)
+                                {
+                                    field.Select();
+                                    application.Selection.TypeText((String)dr["task1"]);
+                                    application.Selection.TypeText((String)dr["task2"]);
+                                    application.Selection.TypeText((String)dr["task3"]);
+                                    application.Selection.TypeText((String)dr["task4"]);
+                                }
+                            }
+                            else if (field.Code.Text.Contains("week7"))
+                            {
+                                if (Convert.ToInt32(dr["weekId"]) == 7)
+                                {
+                                    field.Select();
+                                    application.Selection.TypeText((String)dr["task1"]);
+                                    application.Selection.TypeText((String)dr["task2"]);
+                                    application.Selection.TypeText((String)dr["task3"]);
+                                    application.Selection.TypeText((String)dr["task4"]);
+                                }
+                            }
+                            else if (field.Code.Text.Contains("week8"))
+                            {
+                                if (Convert.ToInt32(dr["weekId"]) == 8)
+                                {
+                                    field.Select();
+                                    application.Selection.TypeText((String)dr["task1"]);
+                                    application.Selection.TypeText((String)dr["task2"]);
+                                    application.Selection.TypeText((String)dr["task3"]);
+                                    application.Selection.TypeText((String)dr["task4"]);
+                                }
+                            }
+
+
+
+
                         }
 
-                    }
-                    else if (field.Code.Text.Contains("week2"))
-                    {
-                        field.Select();
-                        if (Convert.ToInt32(dr["weekId"]) == 2)
-                        {
-                            field.Select();
-                            application.Selection.TypeText((String)dr["task1"]);
-                            application.Selection.TypeText((String)dr["task2"]);
-                            application.Selection.TypeText((String)dr["task3"]);
-                            application.Selection.TypeText((String)dr["task4"]);
-                        }
-                    }
-                    else if (field.Code.Text.Contains("week3"))
-                    {
-                        if (Convert.ToInt32(dr["weekId"]) == 3)
-                        {
-                            field.Select();
-                            application.Selection.TypeText((String)dr["task1"]);
-                            application.Selection.TypeText((String)dr["task2"]);
-                            application.Selection.TypeText((String)dr["task3"]);
-                            application.Selection.TypeText((String)dr["task4"]);
-                        }
-                    }
-                    else if (field.Code.Text.Contains("week4"))
-                    {
-                        if (Convert.ToInt32(dr["weekId"]) == 4)
-                        {
-                            field.Select();
-                            application.Selection.TypeText((String)dr["task1"]);
-                            application.Selection.TypeText((String)dr["task2"]);
-                            application.Selection.TypeText((String)dr["task3"]);
-                            application.Selection.TypeText((String)dr["task4"]);
-                        }
-                    }
-                    else if (field.Code.Text.Contains("week5"))
-                    {
-                        if (Convert.ToInt32(dr["weekId"]) == 5)
-                        {
-                            field.Select();
-                            application.Selection.TypeText((String)dr["task1"]);
-                            application.Selection.TypeText((String)dr["task2"]);
-                            application.Selection.TypeText((String)dr["task3"]);
-                            application.Selection.TypeText((String)dr["task4"]);
-                        }
-                    }
-                    else if (field.Code.Text.Contains("week6"))
-                    {
-                        if (Convert.ToInt32(dr["weekId"]) == 6)
-                        {
-                            field.Select();
-                            application.Selection.TypeText((String)dr["task1"]);
-                            application.Selection.TypeText((String)dr["task2"]);
-                            application.Selection.TypeText((String)dr["task3"]);
-                            application.Selection.TypeText((String)dr["task4"]);
-                        }
-                    }
-                    else if (field.Code.Text.Contains("week7"))
-                    {
-                        if (Convert.ToInt32(dr["weekId"]) == 7)
-                        {
-                            field.Select();
-                            application.Selection.TypeText((String)dr["task1"]);
-                            application.Selection.TypeText((String)dr["task2"]);
-                            application.Selection.TypeText((String)dr["task3"]);
-                            application.Selection.TypeText((String)dr["task4"]);
-                        }
-                    }
-                    else if (field.Code.Text.Contains("week8"))
-                    {
-                        if (Convert.ToInt32(dr["weekId"]) == 8)
-                        {
-                            field.Select();
-                            application.Selection.TypeText((String)dr["task1"]);
-                            application.Selection.TypeText((String)dr["task2"]);
-                            application.Selection.TypeText((String)dr["task3"]);
-                            application.Selection.TypeText((String)dr["task4"]);
-                        }
-                    }
 
+                      
+
+                    }
 
 
 
                 }
-
-                traineeEmail = (String)dr["traineeEmail"];
-
+                document.SaveAs2(FileName: @"C:\projects\follow-up.dox");
+                document.Close();
+                successful = sendEmailViaGmail(traineeEmail);
+                File.Delete(@"C:\projects\follow-up.dox");
             }
-            document.SaveAs2(FileName: @"C:\projects\follow-up.dox");
-
-            document.Close();
-            successful = sendEmailViaGmail(traineeEmail);
-            File.Delete(@"C:\projects\follow-up.dox");
+           
 
             if (successful.Equals("Email Send successfully"))
             {
@@ -437,39 +438,34 @@ namespace KSU_Templates.Admin_Form
 
         protected void Trainee_Attendance()
         {
-            // code to connect to db  and pull student and institution information 
-            CRUD myCrud = new CRUD();
+            SqlDataReader dr = recharge_dr();
+            SqlDataReader usernames_dr = CountUsernames();
 
-            string mySql = @"select * from attendance 
-                           Inner Join trainee on trainee.userName= attendance.userName
-                           Inner Join institution on institution.institutionId = trainee.institutionId
-                           Inner join institutionSupervisor on institutionSupervisor.institutionSupervisorId= institution.institutionSupervisorId
-                           where attendance.userName =@username";
-            Dictionary<string, object> myPara = new Dictionary<string, object>();
-            myPara.Add("@username", "Reema");////////////////////////Session["Username"]
-            SqlDataReader dr = myCrud.getDrPassSql(mySql, myPara);
-
-
-            // gvInternData.DataSource = dr;
-            // gvInternData.DataBind();
-
+            
             var application = new Microsoft.Office.Interop.Word.Application();
             var document = new Microsoft.Office.Interop.Word.Document();
-            document = application.Documents.Add(Template: @"C:\projects\attendance.dotx");
             Object oMissing = System.Reflection.Missing.Value;
             String successful = "";
-
-
-
-            // dr.Read() returns true if there are more rows; otherwise false.
             String traineeEmail = "";
 
-            while (dr.Read())
-            {
 
-                //application.Visible = true;
-                foreach (Microsoft.Office.Interop.Word.Field field in document.Fields)
+
+            while (usernames_dr.Read())
+            {
+                dr = recharge_dr();
+                document = application.Documents.Add(Template: @"C:\projects\attendance.dotx");
+                while (dr.Read())
                 {
+                    //document = application.Documents.Add(Template: @"C:\projects\follow-up.dotx"); A
+
+                    if (dr["userName"].ToString() == usernames_dr["userName"].ToString())
+                    {
+                        traineeEmail = (String)dr["traineeEmail"];
+
+
+                        //application.Visible = true;
+                        foreach (Microsoft.Office.Interop.Word.Field field in document.Fields)
+                             {
 
                     if (field.Code.Text.Contains("name"))
                     {
@@ -654,24 +650,29 @@ namespace KSU_Templates.Admin_Form
                                 application.Selection.TypeText("None");
                             else
                                 application.Selection.TypeText((String)dr["comment"]);
+                                   
+                                }
+                            }
+
+
+
+
                         }
+
+
+
 
                     }
 
 
 
-
-
                 }
-
-                traineeEmail = (String)dr["traineeEmail"];
-
+                document.SaveAs2(FileName: @"C:\projects\attendance.dox");
+                document.Close();
+                successful = sendEmailViaGmail(traineeEmail);
+                File.Delete(@"C:\projects\follow-up.dox");
             }
-            document.SaveAs2(FileName: @"C:\projects\attendance.dox");
-
-            document.Close();
-            successful = sendEmailViaGmail(traineeEmail);
-            File.Delete(@"C:\projects\follow-up.dox");
+        
 
             if (successful.Equals("Email Send successfully"))
             {
@@ -687,14 +688,69 @@ namespace KSU_Templates.Admin_Form
 
         }
 
+        protected SqlDataReader CountUsernames()
+        {
+            CRUD myCrud = new CRUD();
+            string mySql = "";
 
+            String template = ddtemplate.Text.ToString();
+            switch (template)
+            {
+                case "Effective Date Notice":
+                    
+                    break;
+                case "Trainee Attendance":
+                    mySql = @"SELECT DISTINCT userName FROM attendance";
+                    break;
+                case "Follow Up form":
+                    mySql = @"SELECT DISTINCT userName FROM followup";
+                    break;
+            }
+
+            SqlDataReader dr = myCrud.getDrPassSql(mySql);
+
+            return dr;
+        }
+
+        protected SqlDataReader recharge_dr()
+        {
+            // code to connect to db  and pull student and institution information 
+            CRUD myCrud = new CRUD();
+            string mySql = "";
+
+            String template = ddtemplate.Text.ToString();
+            switch (template)
+            {
+                case "Effective Date Notice":
+
+                    break;
+                case "Trainee Attendance":
+                    mySql = @"select * from attendance 
+                           Inner Join trainee on trainee.userName= attendance.userName
+                           Inner Join institution on institution.institutionId = trainee.institutionId
+                           Inner join institutionSupervisor on institutionSupervisor.institutionSupervisorId= institution.institutionSupervisorId";
+                    break;
+                case "Follow Up form":
+                    mySql = @"select * from followup 
+                           Inner Join trainee on trainee.userName= followup.userName
+                           Inner Join institution on institution.institutionId = trainee.institutionId
+                           Inner join institutionSupervisor on institutionSupervisor.institutionSupervisorId= institution.institutionSupervisorId";
+
+                    break;
+            }
+
+            
+            SqlDataReader dr = myCrud.getDrPassSql(mySql);
+
+            return dr;
+        }
 
         public string sendEmailViaGmail( String traineeEmail) // worked 100%, this is a nice one use it with  properties
         {
             string myFrom = "ksu.templates@gmail.com"; // put your email account (from )
             string myTo = traineeEmail; // put your email account (to )
             string mySubject = "KSU Templates";
-            string myBody = "Hi, You can find the templates in the attachments in this email! , Thank You for using KSU Templates";
+            string myBody = "Hi, You can find your trining form in the attachments in this email! , Thank You for using KSU Templates";
 
             string myHostsmtpAddress = "smtp.gmail.com";//"smtp.mail.yahoo.com";  //mail.wdbcs.com 
             int myPortNumber = 587;
@@ -764,28 +820,64 @@ namespace KSU_Templates.Admin_Form
         }
 
 
-        protected async Task<int> DownloadImage(byte[] img)
+        protected void DownloadImage()
         {
+            CRUD myCrud = new CRUD();
 
-            byte[] bytes = img;
+            string mySql = @"select * from trainee 
+							  
+							  Inner Join  institution on institution.institutionId = trainee.institutionId 
+							  Inner Join institutionSupervisor on institution.institutionSupervisorId=institutionSupervisor.institutionSupervisorId
+							  Where institution.institutionId=1";
 
+
+            SqlDataReader dr = myCrud.getDrPassSql(mySql);
+            byte[] seal = null;
+            byte[] tSignature = null;
+            byte[] sSignature = null;
+            ////////////////////////
+            while (dr.Read())
+            {
+                seal = (byte[])dr["institutionSeal"];
+                sSignature= (byte[])dr["institutionSupervisorSignature"];
+                if (dr["traineeSignature"] != null)
+                {
+                    tSignature = (byte[])dr["traineeSignature"];
+                    Response.Clear();
+                    Response.Buffer = true;
+                    Response.Charset = "";
+                    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                    Response.AppendHeader("Content-Disposition", "attachment; filename=" + dr["userName"].ToString() + "Signature.jpg");
+                    Response.BinaryWrite(tSignature);//var
+                    Response.Flush();
+                }
+               
+            }
+            ////////////////////
             Response.Clear();
             Response.Buffer = true;
             Response.Charset = "";
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.AppendHeader("Content-Disposition", "attachment; filename=seal.jpg");
-            //Response.WriteFile("C:\\projects");
-            //Response.TransmitFile(Server.MapPath(@"C:\projects"));
-            Response.BinaryWrite(bytes);
+            Response.BinaryWrite(seal);//var
+            Response.Flush();
+            ///////////////////
+            Response.Clear();
+            Response.Buffer = true;
+            Response.Charset = "";
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.AppendHeader("Content-Disposition", "attachment; filename=supervisorSignature.jpg");
+            Response.BinaryWrite(sSignature);//var
             Response.Flush();
 
-            return 1;
+
 
         }
 
-
-
-
+        protected void download_Click(object sender, EventArgs e)
+        {
+            DownloadImage();
+        }
     }
 
 }

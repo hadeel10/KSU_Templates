@@ -75,6 +75,17 @@
                             <section>
                                 <div class="inner">
                                     <div class="wizard-header">
+                                        <h3 class="heading">Signaturs</h3>
+                                        <p>Please download the trainees signature before choose a template</p>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="container-login100-form-btn m-t-32">
+                                 <asp:Button class="login100-form-btn" Text="Download" runat="server" ID="download" OnClick="download_Click"  ></asp:Button>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="wizard-header">
                                         <h3 class="heading">Templetes</h3>
                                         <p>Please choose a template to send via email to trainees and thier supervisors  </p>
                                     </div>
@@ -97,7 +108,7 @@
                                  <asp:Button class="login100-form-btn" Text="Send" runat="server" ID="btnSend" OnClick="btnSend_Click"  ></asp:Button>
                                         </div>
                                     </div>
-                                    <asp:Label ID="Label1" runat="server"></asp:Label>
+                                    
                                     <br />
                                     <br />
                                 </div>
