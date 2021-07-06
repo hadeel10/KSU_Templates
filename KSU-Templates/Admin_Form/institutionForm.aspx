@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <head>
-        <title>Home Page V16</title>
+        <title>Institution Form V16</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--===============================================================================================-->
@@ -31,6 +31,39 @@
         <link rel="stylesheet" type="text/css" href="/Form_styles/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
         <!-- Main Style Css -->
         <link rel="stylesheet" href="/Form_styles/css/style.css" />
+
+         <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+              function SealPreview(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#<%=oldSeal.ClientID%>').hide();
+                    $('#<%=newSeal.ClientID%>').show();
+                    $('#<%=newSeal.ClientID%>').prop('src', e.target.result)
+                            .width(200)
+                            .height(200);
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            function ImagePreview(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#<%=oldSignature.ClientID%>').hide();
+                    $('#<%=newSignature.ClientID%>').show();
+                    $('#<%=newSignature.ClientID%>').prop('src', e.target.result)
+                            .width(200)
+                            .height(200);
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+           
+        </script>
     </head>
 
 
@@ -51,7 +84,7 @@
             </div>
         </div>
     </div>
-    <!-- Follow up Temaplate Section-->
+    <!-- Institution Temaplate Section-->
     <section class="page-section" style="background-color: rgba(44, 62, 80,0.1);" id="follow-up">
 
         <!-- Contact Section Heading-->
@@ -111,7 +144,7 @@
                                         <p>Please upload the Institution's seal</p>
 
                                         <br />
-                                        <asp:FileUpload ID="FileUpload2" runat="server" onchange="ImagePreview(this);" BackColor="#2c3e50" ForeColor="White" BorderColor="#2c3e50e" />
+                                        <asp:FileUpload ID="FileUpload2" runat="server" onchange="SealPreview(this);" BackColor="#2c3e50" ForeColor="White" BorderColor="#2c3e50e" />
                                     </div>
 
                                     <div class="wizard-header" id="imageDiv">
