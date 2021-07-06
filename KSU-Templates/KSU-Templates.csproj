@@ -305,11 +305,23 @@
     <Content Include="fonts\font-awesome-4.7.0\scss\_screen-reader.scss" />
     <Content Include="fonts\font-awesome-4.7.0\scss\_stacked.scss" />
     <Content Include="fonts\font-awesome-4.7.0\scss\_variables.scss" />
-    <Content Include="fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.eot" />
-    <Content Include="fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.ttf" />
-    <Content Include="fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.woff" />
-    <Content Include="fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.woff2" />
-    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <Content Include="Admin\Web.config" />
+    <Content Include="Ajax.aspx" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Form_styles\fonts\material-design-iconic-font\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="Form_styles\fonts\material-design-iconic-font\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="Form_styles\fonts\material-design-iconic-font\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Form_styles\fonts\material-design-iconic-font\fonts\Material-Design-Iconic-Font.woff2" />
+    <Content Include="Form_styles\fonts\Open_Sans\OpenSans-Bold.ttf" />
+    <Content Include="Form_styles\fonts\Open_Sans\OpenSans-BoldItalic.ttf" />
+    <Content Include="Form_styles\fonts\Open_Sans\OpenSans-ExtraBold.ttf" />
+    <Content Include="Form_styles\fonts\Open_Sans\OpenSans-ExtraBoldItalic.ttf" />
+    <Content Include="Form_styles\fonts\Open_Sans\OpenSans-Italic.ttf" />
+    <Content Include="Form_styles\fonts\Open_Sans\OpenSans-Light.ttf" />
+    <Content Include="Form_styles\fonts\Open_Sans\OpenSans-LightItalic.ttf" />
+    <Content Include="Form_styles\fonts\Open_Sans\OpenSans-Regular.ttf" />
+    <Content Include="Form_styles\fonts\Open_Sans\OpenSans-SemiBold.ttf" />
+    <Content Include="Form_styles\fonts\Open_Sans\OpenSans-SemiBoldItalic.ttf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="images\bg-01.jpg" />
     <Content Include="images\Component 1.png" />
@@ -523,6 +535,13 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ajax.aspx.cs">
+      <DependentUpon>Ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ajax.aspx.designer.cs">
+      <DependentUpon>Ajax.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
