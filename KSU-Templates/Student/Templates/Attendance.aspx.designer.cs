@@ -265,15 +265,6 @@ namespace KSU_Templates.Student.Templates {
         protected global::System.Web.UI.WebControls.GridView GridView4;
         
         /// <summary>
-        /// emptyGrideViews control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label emptyGrideViews;
-        
-        /// <summary>
         /// GridView5 control.
         /// </summary>
         /// <remarks>
