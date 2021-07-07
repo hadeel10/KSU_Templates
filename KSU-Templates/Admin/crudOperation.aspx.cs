@@ -266,7 +266,15 @@ namespace KSU_Templates.Admin
             CRUD myCrud4 = new CRUD();
             string sqlCmd4 = "DELETE FROM aspnet_Users WHERE UserID = '" + UserId + "'";
             myCrud4.InsertUpdateDelete(sqlCmd4);
-            
+
+            CRUD myCrud5 = new CRUD();
+            string sqlCmd5 = "DELETE FROM attendance WHERE userName = '" + userName + "'";
+            myCrud5.InsertUpdateDelete(sqlCmd5);
+
+            CRUD myCrud6 = new CRUD();
+            string sqlCmd6 = "DELETE FROM followup WHERE userName = '" + userName + "'";
+            myCrud6.InsertUpdateDelete(sqlCmd6);
+
             FillGrid();
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Deleted Successfully')", true);
             
