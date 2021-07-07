@@ -549,7 +549,7 @@ namespace KSU_Templates.Student.Templates
 
             if (gvUsers.Rows.Count == 0 && GridView2.Rows.Count == 0 && GridView3.Rows.Count == 0 && GridView4.Rows.Count == 0 && GridView5.Rows.Count == 0 && GridView6.Rows.Count == 0 && GridView7.Rows.Count == 0 && GridView8.Rows.Count == 0) {
 
-                emptyGrideViews.Visible = true;
+               /// emptyGrideViews.Visible = true;
             }
 
 

@@ -372,7 +372,7 @@ namespace KSU_Templates.Templates
             if (gvUsers.Rows.Count == 0)
             {
 
-                emptyGrideViews.Visible = true;
+               // emptyGrideViews.Visible = true;
             }
 
 
