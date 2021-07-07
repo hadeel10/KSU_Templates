@@ -258,7 +258,7 @@
                 </Columns>
             </asp:GridView>
 
-            <asp:Label ID="emptyGrideViews" runat="server" Text="You do not have any attendance yet" Style="color: dimgrey; font-size: 16px" Visible="false"></asp:Label>
+<%--            <asp:Label ID="emptyGrideViews" runat="server" Text="You do not have any attendance yet" Style="color: dimgrey; font-size: 16px" Visible="false"></asp:Label>--%>
 
             <br />
             <br />
