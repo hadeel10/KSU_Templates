@@ -103,16 +103,16 @@ namespace KSU_Templates.Admin
                     }
                     else if (field.Code.Text.Contains("mobile"))
                     {
-                        int m = Convert.ToInt32(dr["traineeMobile"]);
+                      //  int m = Convert.ToInt32(dr["traineeMobile"]);
                         field.Select();
-                        application.Selection.TypeText(m.ToString());
+                        application.Selection.TypeText(dr["traineeMobile"].ToString());
 
                     }
                     else if (field.Code.Text.Contains("homeTelephone"))
                     {
-                        int m = Convert.ToInt32(dr["homeTelephone"]);
+                      //  int m = Convert.ToInt32(dr["homeTelephone"]);
                         field.Select();
-                        application.Selection.TypeText(m.ToString());
+                        application.Selection.TypeText(dr["homeTelephone"].ToString());
                     }
 
                     else if (field.Code.Text.Contains("traineeEmail"))
@@ -153,17 +153,17 @@ namespace KSU_Templates.Admin
                     }
                     else if (field.Code.Text.Contains("officeTelephone"))
                     {
-                        int m = Convert.ToInt32(dr["officeTelephone"]);
+                      //  int m = Convert.ToInt32(dr["officeTelephone"]);
                         field.Select();
-                        application.Selection.TypeText(m.ToString());
+                        application.Selection.TypeText(dr["officeTelephone"].ToString());
                     }
 
 
                     else if (field.Code.Text.Contains("supervisorMobile"))
                     {
-                        int m = Convert.ToInt32(dr["institutionSupervisorMobile"]);
+                     //   int m = Convert.ToInt32(dr["institutionSupervisorMobile"]);
                         field.Select();
-                        application.Selection.TypeText(m.ToString());
+                        application.Selection.TypeText(dr["institutionSupervisorMobile"].ToString());
                     }
 
 
